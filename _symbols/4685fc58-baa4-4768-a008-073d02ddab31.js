@@ -588,7 +588,7 @@ function get_each_context_1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (459:0) {:else}
+// (476:0) {:else}
 function create_else_block(ctx) {
 	let div3;
 	let h1;
@@ -996,7 +996,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (442:10) {#if !isLoggedIn}
+// (459:10) {#if !isLoggedIn}
 function create_if_block(ctx) {
 	let div1;
 	let h1;
@@ -1188,7 +1188,7 @@ function create_if_block(ctx) {
 	};
 }
 
-// (480:8) {#each transactions as transaction}
+// (497:8) {#each transactions as transaction}
 function create_each_block_1(ctx) {
 	let li;
 	let span;
@@ -1281,7 +1281,7 @@ function create_each_block_1(ctx) {
 	};
 }
 
-// (490:2) {#if isAdmin}
+// (507:2) {#if isAdmin}
 function create_if_block_2(ctx) {
 	let div;
 	let h2;
@@ -1377,7 +1377,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (494:8) {#each allUsers as user}
+// (511:8) {#each allUsers as user}
 function create_each_block(ctx) {
 	let li;
 	let span;
@@ -1451,7 +1451,7 @@ function create_each_block(ctx) {
 	};
 }
 
-// (448:6) {#if errorMessage}
+// (465:6) {#if errorMessage}
 function create_if_block_1(ctx) {
 	let div;
 	let t;
@@ -1561,11 +1561,16 @@ function instance($$self, $$props, $$invalidate) {
 		const user = localStorage.getItem('user');
 
 		if (user) {
-			const parsedUser = JSON.parse(user);
-			$$invalidate(0, isLoggedIn = true);
-			$$invalidate(1, username = parsedUser.username);
-			$$invalidate(11, isAdmin = parsedUser.username === 'admin');
-			loadUserData(parsedUser);
+			try {
+				const parsedUser = JSON.parse(user);
+				$$invalidate(0, isLoggedIn = true);
+				$$invalidate(1, username = parsedUser.username);
+				$$invalidate(11, isAdmin = parsedUser.username === 'admin');
+				loadUserData(parsedUser);
+			} catch(error) {
+				console.error('Invalid user data in localStorage:', error);
+				localStorage.removeItem('user'); // Remove invalid data
+			}
 		}
 
 		loadAllUsers();
@@ -1579,8 +1584,16 @@ function instance($$self, $$props, $$invalidate) {
 			const key = localStorage.key(i);
 
 			if (key !== 'user' && key !== 'admin') {
-				const user = JSON.parse(localStorage.getItem(key));
-				users.push(user);
+				try {
+					const user = JSON.parse(localStorage.getItem(key));
+
+					if (user && typeof user === 'object') {
+						users.push(user);
+					}
+				} catch(error) {
+					console.error(`Invalid data for key "${key}":`, error);
+					localStorage.removeItem(key); // Remove invalid data
+				}
 			}
 		}
 
@@ -1611,15 +1624,20 @@ function instance($$self, $$props, $$invalidate) {
 
 	// Handle login
 	function login() {
-		const user = JSON.parse(localStorage.getItem(username));
+		try {
+			const user = JSON.parse(localStorage.getItem(username));
 
-		if (user && user.password === password) {
-			$$invalidate(0, isLoggedIn = true);
-			$$invalidate(11, isAdmin = username === 'admin');
-			loadUserData(user);
-			$$invalidate(3, errorMessage = '');
-		} else {
-			$$invalidate(3, errorMessage = 'Invalid username or password.');
+			if (user && user.password === password) {
+				$$invalidate(0, isLoggedIn = true);
+				$$invalidate(11, isAdmin = username === 'admin');
+				loadUserData(user);
+				$$invalidate(3, errorMessage = '');
+			} else {
+				$$invalidate(3, errorMessage = 'Invalid username or password.');
+			}
+		} catch(error) {
+			console.error('Invalid user data:', error);
+			$$invalidate(3, errorMessage = 'Invalid user data. Please try again.');
 		}
 	}
 
