@@ -582,7 +582,7 @@ function get_each_context(ctx, list, i) {
 	return child_ctx;
 }
 
-// (383:0) {:else}
+// (382:0) {:else}
 function create_else_block(ctx) {
 	let div3;
 	let h1;
@@ -813,34 +813,34 @@ function create_else_block(ctx) {
 			this.h();
 		},
 		h() {
-			attr(h1, "class", "svelte-xsz9wv");
-			attr(span0, "class", "svelte-xsz9wv");
-			attr(p0, "class", "svelte-xsz9wv");
-			attr(span1, "class", "svelte-xsz9wv");
-			attr(p1, "class", "svelte-xsz9wv");
-			attr(span2, "class", "svelte-xsz9wv");
-			attr(p2, "class", "svelte-xsz9wv");
-			attr(div0, "class", "budget-summary svelte-xsz9wv");
+			attr(h1, "class", "svelte-8gxoga");
+			attr(span0, "class", "svelte-8gxoga");
+			attr(p0, "class", "svelte-8gxoga");
+			attr(span1, "class", "svelte-8gxoga");
+			attr(p1, "class", "svelte-8gxoga");
+			attr(span2, "class", "svelte-8gxoga");
+			attr(p2, "class", "svelte-8gxoga");
+			attr(div0, "class", "budget-summary svelte-8gxoga");
 			attr(label0, "for", "type");
-			attr(label0, "class", "svelte-xsz9wv");
+			attr(label0, "class", "svelte-8gxoga");
 			option0.__value = "income";
 			option0.value = option0.__value;
 			option1.__value = "expense";
 			option1.value = option1.__value;
-			attr(select, "class", "svelte-xsz9wv");
+			attr(select, "class", "svelte-8gxoga");
 			if (/*type*/ ctx[9] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[20].call(select));
 			attr(label1, "for", "amount");
-			attr(label1, "class", "svelte-xsz9wv");
+			attr(label1, "class", "svelte-8gxoga");
 			attr(input, "type", "number");
 			attr(input, "placeholder", "Enter amount");
-			attr(input, "class", "svelte-xsz9wv");
-			attr(button0, "class", "svelte-xsz9wv");
-			attr(div1, "class", "form svelte-xsz9wv");
-			attr(h2, "class", "svelte-xsz9wv");
-			attr(ul, "class", "svelte-xsz9wv");
-			attr(div2, "class", "transactions svelte-xsz9wv");
-			attr(button1, "class", "logout-button svelte-xsz9wv");
-			attr(div3, "class", "dashboard svelte-xsz9wv");
+			attr(input, "class", "svelte-8gxoga");
+			attr(button0, "class", "svelte-8gxoga");
+			attr(div1, "class", "form svelte-8gxoga");
+			attr(h2, "class", "svelte-8gxoga");
+			attr(ul, "class", "svelte-8gxoga");
+			attr(div2, "class", "transactions svelte-8gxoga");
+			attr(button1, "class", "logout-button svelte-8gxoga");
+			attr(div3, "class", "dashboard svelte-8gxoga");
 		},
 		m(target, anchor) {
 			insert_hydration(target, div3, anchor);
@@ -961,7 +961,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (366:10) {#if !isLoggedIn}
+// (365:10) {#if !isLoggedIn}
 function create_if_block(ctx) {
 	let div1;
 	let h1;
@@ -1059,17 +1059,17 @@ function create_if_block(ctx) {
 			this.h();
 		},
 		h() {
-			attr(h1, "class", "svelte-xsz9wv");
+			attr(h1, "class", "svelte-8gxoga");
 			attr(input0, "type", "text");
 			attr(input0, "placeholder", "Username");
-			attr(input0, "class", "svelte-xsz9wv");
+			attr(input0, "class", "svelte-8gxoga");
 			attr(input1, "type", "password");
 			attr(input1, "placeholder", "Password");
-			attr(input1, "class", "svelte-xsz9wv");
-			attr(button0, "class", "svelte-xsz9wv");
-			attr(button1, "class", "svelte-xsz9wv");
-			attr(div0, "class", "auth-form svelte-xsz9wv");
-			attr(div1, "class", "glass svelte-xsz9wv");
+			attr(input1, "class", "svelte-8gxoga");
+			attr(button0, "class", "svelte-8gxoga");
+			attr(button1, "class", "svelte-8gxoga");
+			attr(div0, "class", "auth-form svelte-8gxoga");
+			attr(div1, "class", "glass svelte-8gxoga");
 		},
 		m(target, anchor) {
 			insert_hydration(target, div1, anchor);
@@ -1153,7 +1153,7 @@ function create_if_block(ctx) {
 	};
 }
 
-// (404:8) {#each transactions as transaction}
+// (403:8) {#each transactions as transaction}
 function create_each_block(ctx) {
 	let li;
 	let span;
@@ -1209,9 +1209,9 @@ function create_each_block(ctx) {
 			this.h();
 		},
 		h() {
-			attr(span, "class", "svelte-xsz9wv");
-			attr(button, "class", "svelte-xsz9wv");
-			attr(li, "class", "svelte-xsz9wv");
+			attr(span, "class", "svelte-8gxoga");
+			attr(button, "class", "svelte-8gxoga");
+			attr(li, "class", "svelte-8gxoga");
 		},
 		m(target, anchor) {
 			insert_hydration(target, li, anchor);
@@ -1246,7 +1246,7 @@ function create_each_block(ctx) {
 	};
 }
 
-// (372:6) {#if errorMessage}
+// (371:6) {#if errorMessage}
 function create_if_block_1(ctx) {
 	let div;
 	let t;
@@ -1265,7 +1265,7 @@ function create_if_block_1(ctx) {
 			this.h();
 		},
 		h() {
-			attr(div, "class", "error-message svelte-xsz9wv");
+			attr(div, "class", "error-message svelte-8gxoga");
 		},
 		m(target, anchor) {
 			insert_hydration(target, div, anchor);
