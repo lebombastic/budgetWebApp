@@ -813,34 +813,34 @@ function create_else_block(ctx) {
 			this.h();
 		},
 		h() {
-			attr(h1, "class", "svelte-h8uhp2");
-			attr(span0, "class", "svelte-h8uhp2");
-			attr(p0, "class", "svelte-h8uhp2");
-			attr(span1, "class", "svelte-h8uhp2");
-			attr(p1, "class", "svelte-h8uhp2");
-			attr(span2, "class", "svelte-h8uhp2");
-			attr(p2, "class", "svelte-h8uhp2");
-			attr(div0, "class", "budget-summary svelte-h8uhp2");
+			attr(h1, "class", "svelte-xsz9wv");
+			attr(span0, "class", "svelte-xsz9wv");
+			attr(p0, "class", "svelte-xsz9wv");
+			attr(span1, "class", "svelte-xsz9wv");
+			attr(p1, "class", "svelte-xsz9wv");
+			attr(span2, "class", "svelte-xsz9wv");
+			attr(p2, "class", "svelte-xsz9wv");
+			attr(div0, "class", "budget-summary svelte-xsz9wv");
 			attr(label0, "for", "type");
-			attr(label0, "class", "svelte-h8uhp2");
+			attr(label0, "class", "svelte-xsz9wv");
 			option0.__value = "income";
 			option0.value = option0.__value;
 			option1.__value = "expense";
 			option1.value = option1.__value;
-			attr(select, "class", "svelte-h8uhp2");
+			attr(select, "class", "svelte-xsz9wv");
 			if (/*type*/ ctx[9] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[20].call(select));
 			attr(label1, "for", "amount");
-			attr(label1, "class", "svelte-h8uhp2");
+			attr(label1, "class", "svelte-xsz9wv");
 			attr(input, "type", "number");
 			attr(input, "placeholder", "Enter amount");
-			attr(input, "class", "svelte-h8uhp2");
-			attr(button0, "class", "svelte-h8uhp2");
-			attr(div1, "class", "form svelte-h8uhp2");
-			attr(h2, "class", "svelte-h8uhp2");
-			attr(ul, "class", "svelte-h8uhp2");
-			attr(div2, "class", "transactions svelte-h8uhp2");
-			attr(button1, "class", "logout-button svelte-h8uhp2");
-			attr(div3, "class", "dashboard svelte-h8uhp2");
+			attr(input, "class", "svelte-xsz9wv");
+			attr(button0, "class", "svelte-xsz9wv");
+			attr(div1, "class", "form svelte-xsz9wv");
+			attr(h2, "class", "svelte-xsz9wv");
+			attr(ul, "class", "svelte-xsz9wv");
+			attr(div2, "class", "transactions svelte-xsz9wv");
+			attr(button1, "class", "logout-button svelte-xsz9wv");
+			attr(div3, "class", "dashboard svelte-xsz9wv");
 		},
 		m(target, anchor) {
 			insert_hydration(target, div3, anchor);
@@ -1059,17 +1059,17 @@ function create_if_block(ctx) {
 			this.h();
 		},
 		h() {
-			attr(h1, "class", "svelte-h8uhp2");
+			attr(h1, "class", "svelte-xsz9wv");
 			attr(input0, "type", "text");
 			attr(input0, "placeholder", "Username");
-			attr(input0, "class", "svelte-h8uhp2");
+			attr(input0, "class", "svelte-xsz9wv");
 			attr(input1, "type", "password");
 			attr(input1, "placeholder", "Password");
-			attr(input1, "class", "svelte-h8uhp2");
-			attr(button0, "class", "svelte-h8uhp2");
-			attr(button1, "class", "svelte-h8uhp2");
-			attr(div0, "class", "auth-form svelte-h8uhp2");
-			attr(div1, "class", "glass svelte-h8uhp2");
+			attr(input1, "class", "svelte-xsz9wv");
+			attr(button0, "class", "svelte-xsz9wv");
+			attr(button1, "class", "svelte-xsz9wv");
+			attr(div0, "class", "auth-form svelte-xsz9wv");
+			attr(div1, "class", "glass svelte-xsz9wv");
 		},
 		m(target, anchor) {
 			insert_hydration(target, div1, anchor);
@@ -1209,9 +1209,9 @@ function create_each_block(ctx) {
 			this.h();
 		},
 		h() {
-			attr(span, "class", "svelte-h8uhp2");
-			attr(button, "class", "svelte-h8uhp2");
-			attr(li, "class", "svelte-h8uhp2");
+			attr(span, "class", "svelte-xsz9wv");
+			attr(button, "class", "svelte-xsz9wv");
+			attr(li, "class", "svelte-xsz9wv");
 		},
 		m(target, anchor) {
 			insert_hydration(target, li, anchor);
@@ -1265,7 +1265,7 @@ function create_if_block_1(ctx) {
 			this.h();
 		},
 		h() {
-			attr(div, "class", "error-message svelte-h8uhp2");
+			attr(div, "class", "error-message svelte-xsz9wv");
 		},
 		m(target, anchor) {
 			insert_hydration(target, div, anchor);
