@@ -285,6 +285,22 @@ function set_data(text, data) {
 function set_input_value(input, value) {
     input.value = value == null ? '' : value;
 }
+function select_option(select, value, mounting) {
+    for (let i = 0; i < select.options.length; i += 1) {
+        const option = select.options[i];
+        if (option.__value === value) {
+            option.selected = true;
+            return;
+        }
+    }
+    if (!mounting || value !== undefined) {
+        select.selectedIndex = -1; // no option should be selected
+    }
+}
+function select_value(select) {
+    const selected_option = select.querySelector(':checked');
+    return selected_option && selected_option.__value;
+}
 
 let current_component;
 function set_current_component(component) {
@@ -542,20 +558,866 @@ class SvelteComponent {
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[13] = list[i];
+	child_ctx[28] = list[i];
 	return child_ctx;
 }
 
-// (117:6) {#each expenses as expense}
+// (160:2) {:else}
+function create_else_block(ctx) {
+	let div0;
+	let label0;
+	let t0;
+	let t1;
+	let input0;
+	let t2;
+	let div1;
+	let label1;
+	let t3;
+	let t4;
+	let input1;
+	let t5;
+	let button0;
+	let t6;
+	let t7;
+	let button1;
+	let t8;
+	let mounted;
+	let dispose;
+
+	return {
+		c() {
+			div0 = element("div");
+			label0 = element("label");
+			t0 = text("Username:");
+			t1 = space();
+			input0 = element("input");
+			t2 = space();
+			div1 = element("div");
+			label1 = element("label");
+			t3 = text("Password:");
+			t4 = space();
+			input1 = element("input");
+			t5 = space();
+			button0 = element("button");
+			t6 = text("Login");
+			t7 = space();
+			button1 = element("button");
+			t8 = text("Create User");
+			this.h();
+		},
+		l(nodes) {
+			div0 = claim_element(nodes, "DIV", { class: true });
+			var div0_nodes = children(div0);
+			label0 = claim_element(div0_nodes, "LABEL", { for: true, class: true });
+			var label0_nodes = children(label0);
+			t0 = claim_text(label0_nodes, "Username:");
+			label0_nodes.forEach(detach);
+			t1 = claim_space(div0_nodes);
+
+			input0 = claim_element(div0_nodes, "INPUT", {
+				id: true,
+				type: true,
+				placeholder: true,
+				class: true
+			});
+
+			div0_nodes.forEach(detach);
+			t2 = claim_space(nodes);
+			div1 = claim_element(nodes, "DIV", { class: true });
+			var div1_nodes = children(div1);
+			label1 = claim_element(div1_nodes, "LABEL", { for: true, class: true });
+			var label1_nodes = children(label1);
+			t3 = claim_text(label1_nodes, "Password:");
+			label1_nodes.forEach(detach);
+			t4 = claim_space(div1_nodes);
+
+			input1 = claim_element(div1_nodes, "INPUT", {
+				id: true,
+				type: true,
+				placeholder: true,
+				class: true
+			});
+
+			div1_nodes.forEach(detach);
+			t5 = claim_space(nodes);
+			button0 = claim_element(nodes, "BUTTON", { class: true });
+			var button0_nodes = children(button0);
+			t6 = claim_text(button0_nodes, "Login");
+			button0_nodes.forEach(detach);
+			t7 = claim_space(nodes);
+			button1 = claim_element(nodes, "BUTTON", { class: true });
+			var button1_nodes = children(button1);
+			t8 = claim_text(button1_nodes, "Create User");
+			button1_nodes.forEach(detach);
+			this.h();
+		},
+		h() {
+			attr(label0, "for", "username");
+			attr(label0, "class", "svelte-1no3u0g");
+			attr(input0, "id", "username");
+			attr(input0, "type", "text");
+			attr(input0, "placeholder", "Enter your username");
+			attr(input0, "class", "svelte-1no3u0g");
+			attr(div0, "class", "input-group svelte-1no3u0g");
+			attr(label1, "for", "password");
+			attr(label1, "class", "svelte-1no3u0g");
+			attr(input1, "id", "password");
+			attr(input1, "type", "password");
+			attr(input1, "placeholder", "Enter your password");
+			attr(input1, "class", "svelte-1no3u0g");
+			attr(div1, "class", "input-group svelte-1no3u0g");
+			attr(button0, "class", "svelte-1no3u0g");
+			attr(button1, "class", "svelte-1no3u0g");
+		},
+		m(target, anchor) {
+			insert_hydration(target, div0, anchor);
+			append_hydration(div0, label0);
+			append_hydration(label0, t0);
+			append_hydration(div0, t1);
+			append_hydration(div0, input0);
+			set_input_value(input0, /*username*/ ctx[5]);
+			insert_hydration(target, t2, anchor);
+			insert_hydration(target, div1, anchor);
+			append_hydration(div1, label1);
+			append_hydration(label1, t3);
+			append_hydration(div1, t4);
+			append_hydration(div1, input1);
+			set_input_value(input1, /*password*/ ctx[6]);
+			insert_hydration(target, t5, anchor);
+			insert_hydration(target, button0, anchor);
+			append_hydration(button0, t6);
+			insert_hydration(target, t7, anchor);
+			insert_hydration(target, button1, anchor);
+			append_hydration(button1, t8);
+
+			if (!mounted) {
+				dispose = [
+					listen(input0, "input", /*input0_input_handler_1*/ ctx[19]),
+					listen(input1, "input", /*input1_input_handler_1*/ ctx[20]),
+					listen(button0, "click", /*loadFromLocalStorage*/ ctx[11]),
+					listen(button1, "click", /*click_handler_1*/ ctx[21])
+				];
+
+				mounted = true;
+			}
+		},
+		p(ctx, dirty) {
+			if (dirty & /*username*/ 32 && input0.value !== /*username*/ ctx[5]) {
+				set_input_value(input0, /*username*/ ctx[5]);
+			}
+
+			if (dirty & /*password*/ 64 && input1.value !== /*password*/ ctx[6]) {
+				set_input_value(input1, /*password*/ ctx[6]);
+			}
+		},
+		d(detaching) {
+			if (detaching) detach(div0);
+			if (detaching) detach(t2);
+			if (detaching) detach(div1);
+			if (detaching) detach(t5);
+			if (detaching) detach(button0);
+			if (detaching) detach(t7);
+			if (detaching) detach(button1);
+			mounted = false;
+			run_all(dispose);
+		}
+	};
+}
+
+// (142:2) {#if isCreatingUser}
+function create_if_block_1(ctx) {
+	let div0;
+	let label0;
+	let t0;
+	let t1;
+	let input0;
+	let t2;
+	let div1;
+	let label1;
+	let t3;
+	let t4;
+	let input1;
+	let t5;
+	let div2;
+	let label2;
+	let t6;
+	let t7;
+	let input2;
+	let t8;
+	let button0;
+	let t9;
+	let t10;
+	let button1;
+	let t11;
+	let mounted;
+	let dispose;
+
+	return {
+		c() {
+			div0 = element("div");
+			label0 = element("label");
+			t0 = text("Create Username:");
+			t1 = space();
+			input0 = element("input");
+			t2 = space();
+			div1 = element("div");
+			label1 = element("label");
+			t3 = text("Create Password:");
+			t4 = space();
+			input1 = element("input");
+			t5 = space();
+			div2 = element("div");
+			label2 = element("label");
+			t6 = text("Admin Password:");
+			t7 = space();
+			input2 = element("input");
+			t8 = space();
+			button0 = element("button");
+			t9 = text("Create User");
+			t10 = space();
+			button1 = element("button");
+			t11 = text("Cancel");
+			this.h();
+		},
+		l(nodes) {
+			div0 = claim_element(nodes, "DIV", { class: true });
+			var div0_nodes = children(div0);
+			label0 = claim_element(div0_nodes, "LABEL", { for: true, class: true });
+			var label0_nodes = children(label0);
+			t0 = claim_text(label0_nodes, "Create Username:");
+			label0_nodes.forEach(detach);
+			t1 = claim_space(div0_nodes);
+
+			input0 = claim_element(div0_nodes, "INPUT", {
+				id: true,
+				type: true,
+				placeholder: true,
+				class: true
+			});
+
+			div0_nodes.forEach(detach);
+			t2 = claim_space(nodes);
+			div1 = claim_element(nodes, "DIV", { class: true });
+			var div1_nodes = children(div1);
+			label1 = claim_element(div1_nodes, "LABEL", { for: true, class: true });
+			var label1_nodes = children(label1);
+			t3 = claim_text(label1_nodes, "Create Password:");
+			label1_nodes.forEach(detach);
+			t4 = claim_space(div1_nodes);
+
+			input1 = claim_element(div1_nodes, "INPUT", {
+				id: true,
+				type: true,
+				placeholder: true,
+				class: true
+			});
+
+			div1_nodes.forEach(detach);
+			t5 = claim_space(nodes);
+			div2 = claim_element(nodes, "DIV", { class: true });
+			var div2_nodes = children(div2);
+			label2 = claim_element(div2_nodes, "LABEL", { for: true, class: true });
+			var label2_nodes = children(label2);
+			t6 = claim_text(label2_nodes, "Admin Password:");
+			label2_nodes.forEach(detach);
+			t7 = claim_space(div2_nodes);
+
+			input2 = claim_element(div2_nodes, "INPUT", {
+				id: true,
+				type: true,
+				placeholder: true,
+				class: true
+			});
+
+			div2_nodes.forEach(detach);
+			t8 = claim_space(nodes);
+			button0 = claim_element(nodes, "BUTTON", { class: true });
+			var button0_nodes = children(button0);
+			t9 = claim_text(button0_nodes, "Create User");
+			button0_nodes.forEach(detach);
+			t10 = claim_space(nodes);
+			button1 = claim_element(nodes, "BUTTON", { class: true });
+			var button1_nodes = children(button1);
+			t11 = claim_text(button1_nodes, "Cancel");
+			button1_nodes.forEach(detach);
+			this.h();
+		},
+		h() {
+			attr(label0, "for", "username");
+			attr(label0, "class", "svelte-1no3u0g");
+			attr(input0, "id", "username");
+			attr(input0, "type", "text");
+			attr(input0, "placeholder", "Enter new username");
+			attr(input0, "class", "svelte-1no3u0g");
+			attr(div0, "class", "input-group svelte-1no3u0g");
+			attr(label1, "for", "password");
+			attr(label1, "class", "svelte-1no3u0g");
+			attr(input1, "id", "password");
+			attr(input1, "type", "password");
+			attr(input1, "placeholder", "Enter new password");
+			attr(input1, "class", "svelte-1no3u0g");
+			attr(div1, "class", "input-group svelte-1no3u0g");
+			attr(label2, "for", "adminPassword");
+			attr(label2, "class", "svelte-1no3u0g");
+			attr(input2, "id", "adminPassword");
+			attr(input2, "type", "password");
+			attr(input2, "placeholder", "Enter admin password");
+			attr(input2, "class", "svelte-1no3u0g");
+			attr(div2, "class", "input-group svelte-1no3u0g");
+			attr(button0, "class", "svelte-1no3u0g");
+			attr(button1, "class", "svelte-1no3u0g");
+		},
+		m(target, anchor) {
+			insert_hydration(target, div0, anchor);
+			append_hydration(div0, label0);
+			append_hydration(label0, t0);
+			append_hydration(div0, t1);
+			append_hydration(div0, input0);
+			set_input_value(input0, /*username*/ ctx[5]);
+			insert_hydration(target, t2, anchor);
+			insert_hydration(target, div1, anchor);
+			append_hydration(div1, label1);
+			append_hydration(label1, t3);
+			append_hydration(div1, t4);
+			append_hydration(div1, input1);
+			set_input_value(input1, /*password*/ ctx[6]);
+			insert_hydration(target, t5, anchor);
+			insert_hydration(target, div2, anchor);
+			append_hydration(div2, label2);
+			append_hydration(label2, t6);
+			append_hydration(div2, t7);
+			append_hydration(div2, input2);
+			set_input_value(input2, /*inputAdminPassword*/ ctx[7]);
+			insert_hydration(target, t8, anchor);
+			insert_hydration(target, button0, anchor);
+			append_hydration(button0, t9);
+			insert_hydration(target, t10, anchor);
+			insert_hydration(target, button1, anchor);
+			append_hydration(button1, t11);
+
+			if (!mounted) {
+				dispose = [
+					listen(input0, "input", /*input0_input_handler*/ ctx[15]),
+					listen(input1, "input", /*input1_input_handler*/ ctx[16]),
+					listen(input2, "input", /*input2_input_handler*/ ctx[17]),
+					listen(button0, "click", /*createUser*/ ctx[12]),
+					listen(button1, "click", /*click_handler*/ ctx[18])
+				];
+
+				mounted = true;
+			}
+		},
+		p(ctx, dirty) {
+			if (dirty & /*username*/ 32 && input0.value !== /*username*/ ctx[5]) {
+				set_input_value(input0, /*username*/ ctx[5]);
+			}
+
+			if (dirty & /*password*/ 64 && input1.value !== /*password*/ ctx[6]) {
+				set_input_value(input1, /*password*/ ctx[6]);
+			}
+
+			if (dirty & /*inputAdminPassword*/ 128 && input2.value !== /*inputAdminPassword*/ ctx[7]) {
+				set_input_value(input2, /*inputAdminPassword*/ ctx[7]);
+			}
+		},
+		d(detaching) {
+			if (detaching) detach(div0);
+			if (detaching) detach(t2);
+			if (detaching) detach(div1);
+			if (detaching) detach(t5);
+			if (detaching) detach(div2);
+			if (detaching) detach(t8);
+			if (detaching) detach(button0);
+			if (detaching) detach(t10);
+			if (detaching) detach(button1);
+			mounted = false;
+			run_all(dispose);
+		}
+	};
+}
+
+// (175:2) {#if isAuthenticated}
+function create_if_block(ctx) {
+	let div0;
+	let label0;
+	let t0;
+	let t1;
+	let input0;
+	let t2;
+	let div1;
+	let label1;
+	let t3;
+	let t4;
+	let select;
+	let option0;
+	let t5;
+	let option1;
+	let t6;
+	let option2;
+	let t7;
+	let option3;
+	let t8;
+	let option4;
+	let t9;
+	let option5;
+	let t10;
+	let t11;
+	let div2;
+	let label2;
+	let t12;
+	let t13;
+	let input1;
+	let t14;
+	let button;
+	let t15;
+	let t16;
+	let table;
+	let thead;
+	let tr;
+	let th0;
+	let t17;
+	let t18;
+	let th1;
+	let t19;
+	let t20;
+	let tbody;
+	let t21;
+	let div3;
+	let p0;
+	let strong0;
+	let t22;
+	let t23;
+	let t24_value = /*income*/ ctx[0].toFixed(2) + "";
+	let t24;
+	let t25;
+	let p1;
+	let strong1;
+	let t26;
+	let t27;
+	let t28_value = /*totalExpenses*/ ctx[1].toFixed(2) + "";
+	let t28;
+	let t29;
+	let p2;
+	let strong2;
+	let t30;
+	let t31;
+	let t32_value = /*difference*/ ctx[10].toFixed(2) + "";
+	let t32;
+	let mounted;
+	let dispose;
+	let each_value = /*expenses*/ ctx[2];
+	let each_blocks = [];
+
+	for (let i = 0; i < each_value.length; i += 1) {
+		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+	}
+
+	return {
+		c() {
+			div0 = element("div");
+			label0 = element("label");
+			t0 = text("Monthly Income:");
+			t1 = space();
+			input0 = element("input");
+			t2 = space();
+			div1 = element("div");
+			label1 = element("label");
+			t3 = text("Expense Description:");
+			t4 = space();
+			select = element("select");
+			option0 = element("option");
+			t5 = text("Select an expense");
+			option1 = element("option");
+			t6 = text("Rent");
+			option2 = element("option");
+			t7 = text("Groceries");
+			option3 = element("option");
+			t8 = text("Utilities");
+			option4 = element("option");
+			t9 = text("Entertainment");
+			option5 = element("option");
+			t10 = text("Other");
+			t11 = space();
+			div2 = element("div");
+			label2 = element("label");
+			t12 = text("Expense Amount:");
+			t13 = space();
+			input1 = element("input");
+			t14 = space();
+			button = element("button");
+			t15 = text("Add Expense");
+			t16 = space();
+			table = element("table");
+			thead = element("thead");
+			tr = element("tr");
+			th0 = element("th");
+			t17 = text("Description");
+			t18 = space();
+			th1 = element("th");
+			t19 = text("Amount");
+			t20 = space();
+			tbody = element("tbody");
+
+			for (let i = 0; i < each_blocks.length; i += 1) {
+				each_blocks[i].c();
+			}
+
+			t21 = space();
+			div3 = element("div");
+			p0 = element("p");
+			strong0 = element("strong");
+			t22 = text("Total Income:");
+			t23 = text(" $");
+			t24 = text(t24_value);
+			t25 = space();
+			p1 = element("p");
+			strong1 = element("strong");
+			t26 = text("Total Expenses:");
+			t27 = text(" $");
+			t28 = text(t28_value);
+			t29 = space();
+			p2 = element("p");
+			strong2 = element("strong");
+			t30 = text("Difference:");
+			t31 = text(" $");
+			t32 = text(t32_value);
+			this.h();
+		},
+		l(nodes) {
+			div0 = claim_element(nodes, "DIV", { class: true });
+			var div0_nodes = children(div0);
+			label0 = claim_element(div0_nodes, "LABEL", { for: true, class: true });
+			var label0_nodes = children(label0);
+			t0 = claim_text(label0_nodes, "Monthly Income:");
+			label0_nodes.forEach(detach);
+			t1 = claim_space(div0_nodes);
+
+			input0 = claim_element(div0_nodes, "INPUT", {
+				id: true,
+				type: true,
+				min: true,
+				placeholder: true,
+				class: true
+			});
+
+			div0_nodes.forEach(detach);
+			t2 = claim_space(nodes);
+			div1 = claim_element(nodes, "DIV", { class: true });
+			var div1_nodes = children(div1);
+			label1 = claim_element(div1_nodes, "LABEL", { for: true, class: true });
+			var label1_nodes = children(label1);
+			t3 = claim_text(label1_nodes, "Expense Description:");
+			label1_nodes.forEach(detach);
+			t4 = claim_space(div1_nodes);
+			select = claim_element(div1_nodes, "SELECT", { id: true, class: true });
+			var select_nodes = children(select);
+			option0 = claim_element(select_nodes, "OPTION", {});
+			var option0_nodes = children(option0);
+			t5 = claim_text(option0_nodes, "Select an expense");
+			option0_nodes.forEach(detach);
+			option1 = claim_element(select_nodes, "OPTION", {});
+			var option1_nodes = children(option1);
+			t6 = claim_text(option1_nodes, "Rent");
+			option1_nodes.forEach(detach);
+			option2 = claim_element(select_nodes, "OPTION", {});
+			var option2_nodes = children(option2);
+			t7 = claim_text(option2_nodes, "Groceries");
+			option2_nodes.forEach(detach);
+			option3 = claim_element(select_nodes, "OPTION", {});
+			var option3_nodes = children(option3);
+			t8 = claim_text(option3_nodes, "Utilities");
+			option3_nodes.forEach(detach);
+			option4 = claim_element(select_nodes, "OPTION", {});
+			var option4_nodes = children(option4);
+			t9 = claim_text(option4_nodes, "Entertainment");
+			option4_nodes.forEach(detach);
+			option5 = claim_element(select_nodes, "OPTION", {});
+			var option5_nodes = children(option5);
+			t10 = claim_text(option5_nodes, "Other");
+			option5_nodes.forEach(detach);
+			select_nodes.forEach(detach);
+			div1_nodes.forEach(detach);
+			t11 = claim_space(nodes);
+			div2 = claim_element(nodes, "DIV", { class: true });
+			var div2_nodes = children(div2);
+			label2 = claim_element(div2_nodes, "LABEL", { for: true, class: true });
+			var label2_nodes = children(label2);
+			t12 = claim_text(label2_nodes, "Expense Amount:");
+			label2_nodes.forEach(detach);
+			t13 = claim_space(div2_nodes);
+
+			input1 = claim_element(div2_nodes, "INPUT", {
+				id: true,
+				type: true,
+				min: true,
+				placeholder: true,
+				class: true
+			});
+
+			div2_nodes.forEach(detach);
+			t14 = claim_space(nodes);
+			button = claim_element(nodes, "BUTTON", { class: true });
+			var button_nodes = children(button);
+			t15 = claim_text(button_nodes, "Add Expense");
+			button_nodes.forEach(detach);
+			t16 = claim_space(nodes);
+			table = claim_element(nodes, "TABLE", { class: true });
+			var table_nodes = children(table);
+			thead = claim_element(table_nodes, "THEAD", {});
+			var thead_nodes = children(thead);
+			tr = claim_element(thead_nodes, "TR", {});
+			var tr_nodes = children(tr);
+			th0 = claim_element(tr_nodes, "TH", { class: true });
+			var th0_nodes = children(th0);
+			t17 = claim_text(th0_nodes, "Description");
+			th0_nodes.forEach(detach);
+			t18 = claim_space(tr_nodes);
+			th1 = claim_element(tr_nodes, "TH", { class: true });
+			var th1_nodes = children(th1);
+			t19 = claim_text(th1_nodes, "Amount");
+			th1_nodes.forEach(detach);
+			tr_nodes.forEach(detach);
+			thead_nodes.forEach(detach);
+			t20 = claim_space(table_nodes);
+			tbody = claim_element(table_nodes, "TBODY", {});
+			var tbody_nodes = children(tbody);
+
+			for (let i = 0; i < each_blocks.length; i += 1) {
+				each_blocks[i].l(tbody_nodes);
+			}
+
+			tbody_nodes.forEach(detach);
+			table_nodes.forEach(detach);
+			t21 = claim_space(nodes);
+			div3 = claim_element(nodes, "DIV", { class: true });
+			var div3_nodes = children(div3);
+			p0 = claim_element(div3_nodes, "P", {});
+			var p0_nodes = children(p0);
+			strong0 = claim_element(p0_nodes, "STRONG", {});
+			var strong0_nodes = children(strong0);
+			t22 = claim_text(strong0_nodes, "Total Income:");
+			strong0_nodes.forEach(detach);
+			t23 = claim_text(p0_nodes, " $");
+			t24 = claim_text(p0_nodes, t24_value);
+			p0_nodes.forEach(detach);
+			t25 = claim_space(div3_nodes);
+			p1 = claim_element(div3_nodes, "P", {});
+			var p1_nodes = children(p1);
+			strong1 = claim_element(p1_nodes, "STRONG", {});
+			var strong1_nodes = children(strong1);
+			t26 = claim_text(strong1_nodes, "Total Expenses:");
+			strong1_nodes.forEach(detach);
+			t27 = claim_text(p1_nodes, " $");
+			t28 = claim_text(p1_nodes, t28_value);
+			p1_nodes.forEach(detach);
+			t29 = claim_space(div3_nodes);
+			p2 = claim_element(div3_nodes, "P", {});
+			var p2_nodes = children(p2);
+			strong2 = claim_element(p2_nodes, "STRONG", {});
+			var strong2_nodes = children(strong2);
+			t30 = claim_text(strong2_nodes, "Difference:");
+			strong2_nodes.forEach(detach);
+			t31 = claim_text(p2_nodes, " $");
+			t32 = claim_text(p2_nodes, t32_value);
+			p2_nodes.forEach(detach);
+			div3_nodes.forEach(detach);
+			this.h();
+		},
+		h() {
+			attr(label0, "for", "income");
+			attr(label0, "class", "svelte-1no3u0g");
+			attr(input0, "id", "income");
+			attr(input0, "type", "number");
+			attr(input0, "min", "0");
+			attr(input0, "placeholder", "Enter your income");
+			attr(input0, "class", "svelte-1no3u0g");
+			attr(div0, "class", "input-group svelte-1no3u0g");
+			attr(label1, "for", "expenseDesc");
+			attr(label1, "class", "svelte-1no3u0g");
+			option0.__value = "";
+			option0.value = option0.__value;
+			option1.__value = "Rent";
+			option1.value = option1.__value;
+			option2.__value = "Groceries";
+			option2.value = option2.__value;
+			option3.__value = "Utilities";
+			option3.value = option3.__value;
+			option4.__value = "Entertainment";
+			option4.value = option4.__value;
+			option5.__value = "Other";
+			option5.value = option5.__value;
+			attr(select, "id", "expenseDesc");
+			attr(select, "class", "svelte-1no3u0g");
+			if (/*descriptionInput*/ ctx[3] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[23].call(select));
+			attr(div1, "class", "input-group svelte-1no3u0g");
+			attr(label2, "for", "expenseAmt");
+			attr(label2, "class", "svelte-1no3u0g");
+			attr(input1, "id", "expenseAmt");
+			attr(input1, "type", "number");
+			attr(input1, "min", "0");
+			attr(input1, "placeholder", "Enter expense amount");
+			attr(input1, "class", "svelte-1no3u0g");
+			attr(div2, "class", "input-group svelte-1no3u0g");
+			attr(button, "class", "svelte-1no3u0g");
+			attr(th0, "class", "svelte-1no3u0g");
+			attr(th1, "class", "svelte-1no3u0g");
+			attr(table, "class", "svelte-1no3u0g");
+			attr(div3, "class", "summary svelte-1no3u0g");
+		},
+		m(target, anchor) {
+			insert_hydration(target, div0, anchor);
+			append_hydration(div0, label0);
+			append_hydration(label0, t0);
+			append_hydration(div0, t1);
+			append_hydration(div0, input0);
+			set_input_value(input0, /*income*/ ctx[0]);
+			insert_hydration(target, t2, anchor);
+			insert_hydration(target, div1, anchor);
+			append_hydration(div1, label1);
+			append_hydration(label1, t3);
+			append_hydration(div1, t4);
+			append_hydration(div1, select);
+			append_hydration(select, option0);
+			append_hydration(option0, t5);
+			append_hydration(select, option1);
+			append_hydration(option1, t6);
+			append_hydration(select, option2);
+			append_hydration(option2, t7);
+			append_hydration(select, option3);
+			append_hydration(option3, t8);
+			append_hydration(select, option4);
+			append_hydration(option4, t9);
+			append_hydration(select, option5);
+			append_hydration(option5, t10);
+			select_option(select, /*descriptionInput*/ ctx[3], true);
+			insert_hydration(target, t11, anchor);
+			insert_hydration(target, div2, anchor);
+			append_hydration(div2, label2);
+			append_hydration(label2, t12);
+			append_hydration(div2, t13);
+			append_hydration(div2, input1);
+			set_input_value(input1, /*amountInput*/ ctx[4]);
+			insert_hydration(target, t14, anchor);
+			insert_hydration(target, button, anchor);
+			append_hydration(button, t15);
+			insert_hydration(target, t16, anchor);
+			insert_hydration(target, table, anchor);
+			append_hydration(table, thead);
+			append_hydration(thead, tr);
+			append_hydration(tr, th0);
+			append_hydration(th0, t17);
+			append_hydration(tr, t18);
+			append_hydration(tr, th1);
+			append_hydration(th1, t19);
+			append_hydration(table, t20);
+			append_hydration(table, tbody);
+
+			for (let i = 0; i < each_blocks.length; i += 1) {
+				if (each_blocks[i]) {
+					each_blocks[i].m(tbody, null);
+				}
+			}
+
+			insert_hydration(target, t21, anchor);
+			insert_hydration(target, div3, anchor);
+			append_hydration(div3, p0);
+			append_hydration(p0, strong0);
+			append_hydration(strong0, t22);
+			append_hydration(p0, t23);
+			append_hydration(p0, t24);
+			append_hydration(div3, t25);
+			append_hydration(div3, p1);
+			append_hydration(p1, strong1);
+			append_hydration(strong1, t26);
+			append_hydration(p1, t27);
+			append_hydration(p1, t28);
+			append_hydration(div3, t29);
+			append_hydration(div3, p2);
+			append_hydration(p2, strong2);
+			append_hydration(strong2, t30);
+			append_hydration(p2, t31);
+			append_hydration(p2, t32);
+
+			if (!mounted) {
+				dispose = [
+					listen(input0, "input", /*input0_input_handler_2*/ ctx[22]),
+					listen(select, "change", /*select_change_handler*/ ctx[23]),
+					listen(input1, "input", /*input1_input_handler_2*/ ctx[24]),
+					listen(button, "click", /*click_handler_2*/ ctx[25])
+				];
+
+				mounted = true;
+			}
+		},
+		p(ctx, dirty) {
+			if (dirty & /*income*/ 1 && to_number(input0.value) !== /*income*/ ctx[0]) {
+				set_input_value(input0, /*income*/ ctx[0]);
+			}
+
+			if (dirty & /*descriptionInput*/ 8) {
+				select_option(select, /*descriptionInput*/ ctx[3]);
+			}
+
+			if (dirty & /*amountInput*/ 16 && to_number(input1.value) !== /*amountInput*/ ctx[4]) {
+				set_input_value(input1, /*amountInput*/ ctx[4]);
+			}
+
+			if (dirty & /*expenses*/ 4) {
+				each_value = /*expenses*/ ctx[2];
+				let i;
+
+				for (i = 0; i < each_value.length; i += 1) {
+					const child_ctx = get_each_context(ctx, each_value, i);
+
+					if (each_blocks[i]) {
+						each_blocks[i].p(child_ctx, dirty);
+					} else {
+						each_blocks[i] = create_each_block(child_ctx);
+						each_blocks[i].c();
+						each_blocks[i].m(tbody, null);
+					}
+				}
+
+				for (; i < each_blocks.length; i += 1) {
+					each_blocks[i].d(1);
+				}
+
+				each_blocks.length = each_value.length;
+			}
+
+			if (dirty & /*income*/ 1 && t24_value !== (t24_value = /*income*/ ctx[0].toFixed(2) + "")) set_data(t24, t24_value);
+			if (dirty & /*totalExpenses*/ 2 && t28_value !== (t28_value = /*totalExpenses*/ ctx[1].toFixed(2) + "")) set_data(t28, t28_value);
+			if (dirty & /*difference*/ 1024 && t32_value !== (t32_value = /*difference*/ ctx[10].toFixed(2) + "")) set_data(t32, t32_value);
+		},
+		d(detaching) {
+			if (detaching) detach(div0);
+			if (detaching) detach(t2);
+			if (detaching) detach(div1);
+			if (detaching) detach(t11);
+			if (detaching) detach(div2);
+			if (detaching) detach(t14);
+			if (detaching) detach(button);
+			if (detaching) detach(t16);
+			if (detaching) detach(table);
+			destroy_each(each_blocks, detaching);
+			if (detaching) detach(t21);
+			if (detaching) detach(div3);
+			mounted = false;
+			run_all(dispose);
+		}
+	};
+}
+
+// (208:8) {#each expenses as expense}
 function create_each_block(ctx) {
 	let tr;
 	let td0;
-	let t0_value = /*expense*/ ctx[13].description + "";
+	let t0_value = /*expense*/ ctx[28].description + "";
 	let t0;
 	let t1;
 	let td1;
 	let t2;
-	let t3_value = /*expense*/ ctx[13].amount.toFixed(2) + "";
+	let t3_value = /*expense*/ ctx[28].amount.toFixed(2) + "";
 	let t3;
 	let t4;
 
@@ -589,8 +1451,8 @@ function create_each_block(ctx) {
 			this.h();
 		},
 		h() {
-			attr(td0, "class", "svelte-br3jd");
-			attr(td1, "class", "svelte-br3jd");
+			attr(td0, "class", "svelte-1no3u0g");
+			attr(td1, "class", "svelte-1no3u0g");
 		},
 		m(target, anchor) {
 			insert_hydration(target, tr, anchor);
@@ -603,8 +1465,8 @@ function create_each_block(ctx) {
 			append_hydration(tr, t4);
 		},
 		p(ctx, dirty) {
-			if (dirty & /*expenses*/ 4 && t0_value !== (t0_value = /*expense*/ ctx[13].description + "")) set_data(t0, t0_value);
-			if (dirty & /*expenses*/ 4 && t3_value !== (t3_value = /*expense*/ ctx[13].amount.toFixed(2) + "")) set_data(t3, t3_value);
+			if (dirty & /*expenses*/ 4 && t0_value !== (t0_value = /*expense*/ ctx[28].description + "")) set_data(t0, t0_value);
+			if (dirty & /*expenses*/ 4 && t3_value !== (t3_value = /*expense*/ ctx[28].amount.toFixed(2) + "")) set_data(t3, t3_value);
 		},
 		d(detaching) {
 			if (detaching) detach(tr);
@@ -613,415 +1475,96 @@ function create_each_block(ctx) {
 }
 
 function create_fragment(ctx) {
-	let div4;
+	let div;
 	let h1;
 	let t0;
 	let t1;
-	let div0;
-	let label0;
 	let t2;
-	let t3;
-	let input0;
-	let t4;
-	let div1;
-	let label1;
-	let t5;
-	let t6;
-	let input1;
-	let t7;
-	let div2;
-	let label2;
-	let t8;
-	let t9;
-	let input2;
-	let t10;
-	let button;
-	let t11;
-	let t12;
-	let table;
-	let thead;
-	let tr;
-	let th0;
-	let t13;
-	let t14;
-	let th1;
-	let t15;
-	let t16;
-	let tbody;
-	let t17;
-	let div3;
-	let p0;
-	let strong0;
-	let t18;
-	let t19;
-	let t20_value = /*income*/ ctx[0].toFixed(2) + "";
-	let t20;
-	let t21;
-	let p1;
-	let strong1;
-	let t22;
-	let t23;
-	let t24_value = /*totalExpenses*/ ctx[1].toFixed(2) + "";
-	let t24;
-	let t25;
-	let p2;
-	let strong2;
-	let t26;
-	let t27;
-	let t28_value = /*difference*/ ctx[5].toFixed(2) + "";
-	let t28;
-	let mounted;
-	let dispose;
-	let each_value = /*expenses*/ ctx[2];
-	let each_blocks = [];
 
-	for (let i = 0; i < each_value.length; i += 1) {
-		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+	function select_block_type(ctx, dirty) {
+		if (/*isCreatingUser*/ ctx[9]) return create_if_block_1;
+		return create_else_block;
 	}
+
+	let current_block_type = select_block_type(ctx);
+	let if_block0 = current_block_type(ctx);
+	let if_block1 = /*isAuthenticated*/ ctx[8] && create_if_block(ctx);
 
 	return {
 		c() {
-			div4 = element("div");
+			div = element("div");
 			h1 = element("h1");
 			t0 = text("Budget Tracker");
 			t1 = space();
-			div0 = element("div");
-			label0 = element("label");
-			t2 = text("Monthly Income:");
-			t3 = space();
-			input0 = element("input");
-			t4 = space();
-			div1 = element("div");
-			label1 = element("label");
-			t5 = text("Expense Description:");
-			t6 = space();
-			input1 = element("input");
-			t7 = space();
-			div2 = element("div");
-			label2 = element("label");
-			t8 = text("Expense Amount:");
-			t9 = space();
-			input2 = element("input");
-			t10 = space();
-			button = element("button");
-			t11 = text("Add Expense");
-			t12 = space();
-			table = element("table");
-			thead = element("thead");
-			tr = element("tr");
-			th0 = element("th");
-			t13 = text("Description");
-			t14 = space();
-			th1 = element("th");
-			t15 = text("Amount");
-			t16 = space();
-			tbody = element("tbody");
-
-			for (let i = 0; i < each_blocks.length; i += 1) {
-				each_blocks[i].c();
-			}
-
-			t17 = space();
-			div3 = element("div");
-			p0 = element("p");
-			strong0 = element("strong");
-			t18 = text("Total Income:");
-			t19 = text(" $");
-			t20 = text(t20_value);
-			t21 = space();
-			p1 = element("p");
-			strong1 = element("strong");
-			t22 = text("Total Expenses:");
-			t23 = text(" $");
-			t24 = text(t24_value);
-			t25 = space();
-			p2 = element("p");
-			strong2 = element("strong");
-			t26 = text("Difference:");
-			t27 = text(" $");
-			t28 = text(t28_value);
+			if_block0.c();
+			t2 = space();
+			if (if_block1) if_block1.c();
 			this.h();
 		},
 		l(nodes) {
-			div4 = claim_element(nodes, "DIV", { class: true });
-			var div4_nodes = children(div4);
-			h1 = claim_element(div4_nodes, "H1", { class: true });
+			div = claim_element(nodes, "DIV", { class: true });
+			var div_nodes = children(div);
+			h1 = claim_element(div_nodes, "H1", { class: true });
 			var h1_nodes = children(h1);
 			t0 = claim_text(h1_nodes, "Budget Tracker");
 			h1_nodes.forEach(detach);
-			t1 = claim_space(div4_nodes);
-			div0 = claim_element(div4_nodes, "DIV", { class: true });
-			var div0_nodes = children(div0);
-			label0 = claim_element(div0_nodes, "LABEL", { for: true, class: true });
-			var label0_nodes = children(label0);
-			t2 = claim_text(label0_nodes, "Monthly Income:");
-			label0_nodes.forEach(detach);
-			t3 = claim_space(div0_nodes);
-
-			input0 = claim_element(div0_nodes, "INPUT", {
-				id: true,
-				type: true,
-				min: true,
-				placeholder: true,
-				class: true
-			});
-
-			div0_nodes.forEach(detach);
-			t4 = claim_space(div4_nodes);
-			div1 = claim_element(div4_nodes, "DIV", { class: true });
-			var div1_nodes = children(div1);
-			label1 = claim_element(div1_nodes, "LABEL", { for: true, class: true });
-			var label1_nodes = children(label1);
-			t5 = claim_text(label1_nodes, "Expense Description:");
-			label1_nodes.forEach(detach);
-			t6 = claim_space(div1_nodes);
-
-			input1 = claim_element(div1_nodes, "INPUT", {
-				id: true,
-				type: true,
-				placeholder: true,
-				class: true
-			});
-
-			div1_nodes.forEach(detach);
-			t7 = claim_space(div4_nodes);
-			div2 = claim_element(div4_nodes, "DIV", { class: true });
-			var div2_nodes = children(div2);
-			label2 = claim_element(div2_nodes, "LABEL", { for: true, class: true });
-			var label2_nodes = children(label2);
-			t8 = claim_text(label2_nodes, "Expense Amount:");
-			label2_nodes.forEach(detach);
-			t9 = claim_space(div2_nodes);
-
-			input2 = claim_element(div2_nodes, "INPUT", {
-				id: true,
-				type: true,
-				min: true,
-				placeholder: true,
-				class: true
-			});
-
-			div2_nodes.forEach(detach);
-			t10 = claim_space(div4_nodes);
-			button = claim_element(div4_nodes, "BUTTON", { class: true });
-			var button_nodes = children(button);
-			t11 = claim_text(button_nodes, "Add Expense");
-			button_nodes.forEach(detach);
-			t12 = claim_space(div4_nodes);
-			table = claim_element(div4_nodes, "TABLE", { class: true });
-			var table_nodes = children(table);
-			thead = claim_element(table_nodes, "THEAD", {});
-			var thead_nodes = children(thead);
-			tr = claim_element(thead_nodes, "TR", {});
-			var tr_nodes = children(tr);
-			th0 = claim_element(tr_nodes, "TH", { class: true });
-			var th0_nodes = children(th0);
-			t13 = claim_text(th0_nodes, "Description");
-			th0_nodes.forEach(detach);
-			t14 = claim_space(tr_nodes);
-			th1 = claim_element(tr_nodes, "TH", { class: true });
-			var th1_nodes = children(th1);
-			t15 = claim_text(th1_nodes, "Amount");
-			th1_nodes.forEach(detach);
-			tr_nodes.forEach(detach);
-			thead_nodes.forEach(detach);
-			t16 = claim_space(table_nodes);
-			tbody = claim_element(table_nodes, "TBODY", {});
-			var tbody_nodes = children(tbody);
-
-			for (let i = 0; i < each_blocks.length; i += 1) {
-				each_blocks[i].l(tbody_nodes);
-			}
-
-			tbody_nodes.forEach(detach);
-			table_nodes.forEach(detach);
-			t17 = claim_space(div4_nodes);
-			div3 = claim_element(div4_nodes, "DIV", { class: true });
-			var div3_nodes = children(div3);
-			p0 = claim_element(div3_nodes, "P", {});
-			var p0_nodes = children(p0);
-			strong0 = claim_element(p0_nodes, "STRONG", {});
-			var strong0_nodes = children(strong0);
-			t18 = claim_text(strong0_nodes, "Total Income:");
-			strong0_nodes.forEach(detach);
-			t19 = claim_text(p0_nodes, " $");
-			t20 = claim_text(p0_nodes, t20_value);
-			p0_nodes.forEach(detach);
-			t21 = claim_space(div3_nodes);
-			p1 = claim_element(div3_nodes, "P", {});
-			var p1_nodes = children(p1);
-			strong1 = claim_element(p1_nodes, "STRONG", {});
-			var strong1_nodes = children(strong1);
-			t22 = claim_text(strong1_nodes, "Total Expenses:");
-			strong1_nodes.forEach(detach);
-			t23 = claim_text(p1_nodes, " $");
-			t24 = claim_text(p1_nodes, t24_value);
-			p1_nodes.forEach(detach);
-			t25 = claim_space(div3_nodes);
-			p2 = claim_element(div3_nodes, "P", {});
-			var p2_nodes = children(p2);
-			strong2 = claim_element(p2_nodes, "STRONG", {});
-			var strong2_nodes = children(strong2);
-			t26 = claim_text(strong2_nodes, "Difference:");
-			strong2_nodes.forEach(detach);
-			t27 = claim_text(p2_nodes, " $");
-			t28 = claim_text(p2_nodes, t28_value);
-			p2_nodes.forEach(detach);
-			div3_nodes.forEach(detach);
-			div4_nodes.forEach(detach);
+			t1 = claim_space(div_nodes);
+			if_block0.l(div_nodes);
+			t2 = claim_space(div_nodes);
+			if (if_block1) if_block1.l(div_nodes);
+			div_nodes.forEach(detach);
 			this.h();
 		},
 		h() {
-			attr(h1, "class", "svelte-br3jd");
-			attr(label0, "for", "income");
-			attr(label0, "class", "svelte-br3jd");
-			attr(input0, "id", "income");
-			attr(input0, "type", "number");
-			attr(input0, "min", "0");
-			attr(input0, "placeholder", "Enter your income");
-			attr(input0, "class", "svelte-br3jd");
-			attr(div0, "class", "input-group svelte-br3jd");
-			attr(label1, "for", "expenseDesc");
-			attr(label1, "class", "svelte-br3jd");
-			attr(input1, "id", "expenseDesc");
-			attr(input1, "type", "text");
-			attr(input1, "placeholder", "E.g., Rent, Groceries");
-			attr(input1, "class", "svelte-br3jd");
-			attr(div1, "class", "input-group svelte-br3jd");
-			attr(label2, "for", "expenseAmt");
-			attr(label2, "class", "svelte-br3jd");
-			attr(input2, "id", "expenseAmt");
-			attr(input2, "type", "number");
-			attr(input2, "min", "0");
-			attr(input2, "placeholder", "Enter expense amount");
-			attr(input2, "class", "svelte-br3jd");
-			attr(div2, "class", "input-group svelte-br3jd");
-			attr(button, "class", "svelte-br3jd");
-			attr(th0, "class", "svelte-br3jd");
-			attr(th1, "class", "svelte-br3jd");
-			attr(table, "class", "svelte-br3jd");
-			attr(div3, "class", "summary svelte-br3jd");
-			attr(div4, "class", "container svelte-br3jd");
+			attr(h1, "class", "svelte-1no3u0g");
+			attr(div, "class", "container svelte-1no3u0g");
 		},
 		m(target, anchor) {
-			insert_hydration(target, div4, anchor);
-			append_hydration(div4, h1);
+			insert_hydration(target, div, anchor);
+			append_hydration(div, h1);
 			append_hydration(h1, t0);
-			append_hydration(div4, t1);
-			append_hydration(div4, div0);
-			append_hydration(div0, label0);
-			append_hydration(label0, t2);
-			append_hydration(div0, t3);
-			append_hydration(div0, input0);
-			set_input_value(input0, /*income*/ ctx[0]);
-			append_hydration(div4, t4);
-			append_hydration(div4, div1);
-			append_hydration(div1, label1);
-			append_hydration(label1, t5);
-			append_hydration(div1, t6);
-			append_hydration(div1, input1);
-			/*input1_binding*/ ctx[9](input1);
-			append_hydration(div4, t7);
-			append_hydration(div4, div2);
-			append_hydration(div2, label2);
-			append_hydration(label2, t8);
-			append_hydration(div2, t9);
-			append_hydration(div2, input2);
-			/*input2_binding*/ ctx[10](input2);
-			append_hydration(div4, t10);
-			append_hydration(div4, button);
-			append_hydration(button, t11);
-			append_hydration(div4, t12);
-			append_hydration(div4, table);
-			append_hydration(table, thead);
-			append_hydration(thead, tr);
-			append_hydration(tr, th0);
-			append_hydration(th0, t13);
-			append_hydration(tr, t14);
-			append_hydration(tr, th1);
-			append_hydration(th1, t15);
-			append_hydration(table, t16);
-			append_hydration(table, tbody);
-
-			for (let i = 0; i < each_blocks.length; i += 1) {
-				if (each_blocks[i]) {
-					each_blocks[i].m(tbody, null);
-				}
-			}
-
-			append_hydration(div4, t17);
-			append_hydration(div4, div3);
-			append_hydration(div3, p0);
-			append_hydration(p0, strong0);
-			append_hydration(strong0, t18);
-			append_hydration(p0, t19);
-			append_hydration(p0, t20);
-			append_hydration(div3, t21);
-			append_hydration(div3, p1);
-			append_hydration(p1, strong1);
-			append_hydration(strong1, t22);
-			append_hydration(p1, t23);
-			append_hydration(p1, t24);
-			append_hydration(div3, t25);
-			append_hydration(div3, p2);
-			append_hydration(p2, strong2);
-			append_hydration(strong2, t26);
-			append_hydration(p2, t27);
-			append_hydration(p2, t28);
-
-			if (!mounted) {
-				dispose = [
-					listen(input0, "input", /*input0_input_handler*/ ctx[8]),
-					listen(button, "click", /*click_handler*/ ctx[11])
-				];
-
-				mounted = true;
-			}
+			append_hydration(div, t1);
+			if_block0.m(div, null);
+			append_hydration(div, t2);
+			if (if_block1) if_block1.m(div, null);
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*income*/ 1 && to_number(input0.value) !== /*income*/ ctx[0]) {
-				set_input_value(input0, /*income*/ ctx[0]);
+			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block0) {
+				if_block0.p(ctx, dirty);
+			} else {
+				if_block0.d(1);
+				if_block0 = current_block_type(ctx);
+
+				if (if_block0) {
+					if_block0.c();
+					if_block0.m(div, t2);
+				}
 			}
 
-			if (dirty & /*expenses*/ 4) {
-				each_value = /*expenses*/ ctx[2];
-				let i;
-
-				for (i = 0; i < each_value.length; i += 1) {
-					const child_ctx = get_each_context(ctx, each_value, i);
-
-					if (each_blocks[i]) {
-						each_blocks[i].p(child_ctx, dirty);
-					} else {
-						each_blocks[i] = create_each_block(child_ctx);
-						each_blocks[i].c();
-						each_blocks[i].m(tbody, null);
-					}
+			if (/*isAuthenticated*/ ctx[8]) {
+				if (if_block1) {
+					if_block1.p(ctx, dirty);
+				} else {
+					if_block1 = create_if_block(ctx);
+					if_block1.c();
+					if_block1.m(div, null);
 				}
-
-				for (; i < each_blocks.length; i += 1) {
-					each_blocks[i].d(1);
-				}
-
-				each_blocks.length = each_value.length;
+			} else if (if_block1) {
+				if_block1.d(1);
+				if_block1 = null;
 			}
-
-			if (dirty & /*income*/ 1 && t20_value !== (t20_value = /*income*/ ctx[0].toFixed(2) + "")) set_data(t20, t20_value);
-			if (dirty & /*totalExpenses*/ 2 && t24_value !== (t24_value = /*totalExpenses*/ ctx[1].toFixed(2) + "")) set_data(t24, t24_value);
-			if (dirty & /*difference*/ 32 && t28_value !== (t28_value = /*difference*/ ctx[5].toFixed(2) + "")) set_data(t28, t28_value);
 		},
 		i: noop,
 		o: noop,
 		d(detaching) {
-			if (detaching) detach(div4);
-			/*input1_binding*/ ctx[9](null);
-			/*input2_binding*/ ctx[10](null);
-			destroy_each(each_blocks, detaching);
-			mounted = false;
-			run_all(dispose);
+			if (detaching) detach(div);
+			if_block0.d();
+			if (if_block1) if_block1.d();
 		}
 	};
 }
+
+let adminPassword = "admin123"; // Admin-defined password for creating users
 
 function instance($$self, $$props, $$invalidate) {
 	let totalExpenses;
@@ -1031,10 +1574,53 @@ function instance($$self, $$props, $$invalidate) {
 	let expenses = [];
 	let descriptionInput = "";
 	let amountInput = "";
+	let username = "";
+	let password = "";
+	let inputAdminPassword = "";
+	let isAuthenticated = false;
+	let isCreatingUser = false;
+
+	function saveToLocalStorage() {
+		const userKey = `${username}:${password}`;
+		const userData = { income, expenses };
+		localStorage.setItem(userKey, JSON.stringify(userData));
+	}
+
+	function loadFromLocalStorage() {
+		const userKey = `${username}:${password}`;
+		const userData = JSON.parse(localStorage.getItem(userKey));
+
+		if (userData) {
+			$$invalidate(0, income = userData.income);
+			$$invalidate(2, expenses = userData.expenses);
+			$$invalidate(8, isAuthenticated = true);
+		} else {
+			alert("No data found for this user or incorrect credentials.");
+		}
+	}
+
+	function createUser() {
+		if (inputAdminPassword === adminPassword) {
+			const userKey = `${username}:${password}`;
+
+			if (!localStorage.getItem(userKey)) {
+				saveToLocalStorage();
+				alert("User created successfully. You can now log in.");
+				$$invalidate(9, isCreatingUser = false);
+			} else {
+				alert("User already exists. Please log in.");
+			}
+		} else {
+			alert("Incorrect admin password. User creation failed.");
+		}
+	}
 
 	function addExpense(description, amount) {
 		if (description && amount > 0) {
 			$$invalidate(2, expenses = [...expenses, { description, amount: parseFloat(amount) }]);
+			$$invalidate(3, descriptionInput = "");
+			$$invalidate(4, amountInput = "");
+			saveToLocalStorage();
 		}
 	}
 
@@ -1043,33 +1629,58 @@ function instance($$self, $$props, $$invalidate) {
 	}
 
 	function input0_input_handler() {
+		username = this.value;
+		$$invalidate(5, username);
+	}
+
+	function input1_input_handler() {
+		password = this.value;
+		$$invalidate(6, password);
+	}
+
+	function input2_input_handler() {
+		inputAdminPassword = this.value;
+		$$invalidate(7, inputAdminPassword);
+	}
+
+	const click_handler = () => $$invalidate(9, isCreatingUser = false);
+
+	function input0_input_handler_1() {
+		username = this.value;
+		$$invalidate(5, username);
+	}
+
+	function input1_input_handler_1() {
+		password = this.value;
+		$$invalidate(6, password);
+	}
+
+	const click_handler_1 = () => $$invalidate(9, isCreatingUser = true);
+
+	function input0_input_handler_2() {
 		income = to_number(this.value);
 		$$invalidate(0, income);
 	}
 
-	function input1_binding($$value) {
-		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
-			descriptionInput = $$value;
-			$$invalidate(3, descriptionInput);
-		});
+	function select_change_handler() {
+		descriptionInput = select_value(this);
+		$$invalidate(3, descriptionInput);
 	}
 
-	function input2_binding($$value) {
-		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
-			amountInput = $$value;
-			$$invalidate(4, amountInput);
-		});
+	function input1_input_handler_2() {
+		amountInput = to_number(this.value);
+		$$invalidate(4, amountInput);
 	}
 
-	const click_handler = () => addExpense(descriptionInput.value, amountInput.value);
+	const click_handler_2 = () => addExpense(descriptionInput, amountInput);
 
 	$$self.$$set = $$props => {
-		if ('props' in $$props) $$invalidate(7, props = $$props.props);
+		if ('props' in $$props) $$invalidate(14, props = $$props.props);
 	};
 
 	$$self.$$.update = () => {
 		if ($$self.$$.dirty & /*income, totalExpenses*/ 3) {
-			$$invalidate(5, difference = income - totalExpenses);
+			$$invalidate(10, difference = income - totalExpenses);
 		}
 	};
 
@@ -1081,20 +1692,34 @@ function instance($$self, $$props, $$invalidate) {
 		expenses,
 		descriptionInput,
 		amountInput,
+		username,
+		password,
+		inputAdminPassword,
+		isAuthenticated,
+		isCreatingUser,
 		difference,
+		loadFromLocalStorage,
+		createUser,
 		addExpense,
 		props,
 		input0_input_handler,
-		input1_binding,
-		input2_binding,
-		click_handler
+		input1_input_handler,
+		input2_input_handler,
+		click_handler,
+		input0_input_handler_1,
+		input1_input_handler_1,
+		click_handler_1,
+		input0_input_handler_2,
+		select_change_handler,
+		input1_input_handler_2,
+		click_handler_2
 	];
 }
 
 class Component extends SvelteComponent {
 	constructor(options) {
 		super();
-		init(this, options, instance, create_fragment, safe_not_equal, { props: 7 });
+		init(this, options, instance, create_fragment, safe_not_equal, { props: 14 });
 	}
 }
 
