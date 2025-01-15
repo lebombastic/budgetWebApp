@@ -578,11 +578,17 @@ class SvelteComponent {
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[25] = list[i];
+	child_ctx[30] = list[i];
 	return child_ctx;
 }
 
-// (382:0) {:else}
+function get_each_context_1(ctx, list, i) {
+	const child_ctx = ctx.slice();
+	child_ctx[33] = list[i];
+	return child_ctx;
+}
+
+// (459:0) {:else}
 function create_else_block(ctx) {
 	let div3;
 	let h1;
@@ -638,14 +644,18 @@ function create_else_block(ctx) {
 	let t28;
 	let button1;
 	let t29;
+	let t30;
+	let if_block_anchor;
 	let mounted;
 	let dispose;
-	let each_value = /*transactions*/ ctx[8];
+	let each_value_1 = /*transactions*/ ctx[8];
 	let each_blocks = [];
 
-	for (let i = 0; i < each_value.length; i += 1) {
-		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+	for (let i = 0; i < each_value_1.length; i += 1) {
+		each_blocks[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
 	}
+
+	let if_block = /*isAdmin*/ ctx[11] && create_if_block_2(ctx);
 
 	return {
 		c() {
@@ -705,6 +715,9 @@ function create_else_block(ctx) {
 			t28 = space();
 			button1 = element("button");
 			t29 = text("Logout");
+			t30 = space();
+			if (if_block) if_block.c();
+			if_block_anchor = empty();
 			this.h();
 		},
 		l(nodes) {
@@ -810,37 +823,40 @@ function create_else_block(ctx) {
 			t29 = claim_text(button1_nodes, "Logout");
 			button1_nodes.forEach(detach);
 			div3_nodes.forEach(detach);
+			t30 = claim_space(nodes);
+			if (if_block) if_block.l(nodes);
+			if_block_anchor = empty();
 			this.h();
 		},
 		h() {
-			attr(h1, "class", "svelte-1r4p1qr");
-			attr(span0, "class", "svelte-1r4p1qr");
-			attr(p0, "class", "svelte-1r4p1qr");
-			attr(span1, "class", "svelte-1r4p1qr");
-			attr(p1, "class", "svelte-1r4p1qr");
-			attr(span2, "class", "svelte-1r4p1qr");
-			attr(p2, "class", "svelte-1r4p1qr");
-			attr(div0, "class", "budget-summary svelte-1r4p1qr");
+			attr(h1, "class", "svelte-1my7nxe");
+			attr(span0, "class", "svelte-1my7nxe");
+			attr(p0, "class", "svelte-1my7nxe");
+			attr(span1, "class", "svelte-1my7nxe");
+			attr(p1, "class", "svelte-1my7nxe");
+			attr(span2, "class", "svelte-1my7nxe");
+			attr(p2, "class", "svelte-1my7nxe");
+			attr(div0, "class", "budget-summary svelte-1my7nxe");
 			attr(label0, "for", "type");
-			attr(label0, "class", "svelte-1r4p1qr");
+			attr(label0, "class", "svelte-1my7nxe");
 			option0.__value = "income";
 			option0.value = option0.__value;
 			option1.__value = "expense";
 			option1.value = option1.__value;
-			attr(select, "class", "svelte-1r4p1qr");
-			if (/*type*/ ctx[9] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[20].call(select));
+			attr(select, "class", "svelte-1my7nxe");
+			if (/*type*/ ctx[9] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[23].call(select));
 			attr(label1, "for", "amount");
-			attr(label1, "class", "svelte-1r4p1qr");
+			attr(label1, "class", "svelte-1my7nxe");
 			attr(input, "type", "number");
 			attr(input, "placeholder", "Enter amount");
-			attr(input, "class", "svelte-1r4p1qr");
-			attr(button0, "class", "svelte-1r4p1qr");
-			attr(div1, "class", "form svelte-1r4p1qr");
-			attr(h2, "class", "svelte-1r4p1qr");
-			attr(ul, "class", "svelte-1r4p1qr");
-			attr(div2, "class", "transactions svelte-1r4p1qr");
-			attr(button1, "class", "logout-button svelte-1r4p1qr");
-			attr(div3, "class", "dashboard svelte-1r4p1qr");
+			attr(input, "class", "svelte-1my7nxe");
+			attr(button0, "class", "svelte-1my7nxe");
+			attr(div1, "class", "form svelte-1my7nxe");
+			attr(h2, "class", "svelte-1my7nxe");
+			attr(ul, "class", "svelte-1my7nxe");
+			attr(div2, "class", "transactions svelte-1my7nxe");
+			attr(button1, "class", "logout-button svelte-1my7nxe");
+			attr(div3, "class", "dashboard svelte-1my7nxe");
 		},
 		m(target, anchor) {
 			insert_hydration(target, div3, anchor);
@@ -903,43 +919,46 @@ function create_else_block(ctx) {
 			append_hydration(div3, t28);
 			append_hydration(div3, button1);
 			append_hydration(button1, t29);
+			insert_hydration(target, t30, anchor);
+			if (if_block) if_block.m(target, anchor);
+			insert_hydration(target, if_block_anchor, anchor);
 
 			if (!mounted) {
 				dispose = [
-					listen(select, "change", /*select_change_handler*/ ctx[20]),
-					listen(input, "input", /*input_input_handler*/ ctx[21]),
-					listen(button0, "click", /*addTransaction*/ ctx[14]),
-					listen(button1, "click", /*logout*/ ctx[13])
+					listen(select, "change", /*select_change_handler*/ ctx[23]),
+					listen(input, "input", /*input_input_handler*/ ctx[24]),
+					listen(button0, "click", /*addTransaction*/ ctx[17]),
+					listen(button1, "click", /*logout*/ ctx[15])
 				];
 
 				mounted = true;
 			}
 		},
 		p(ctx, dirty) {
-			if (dirty & /*username*/ 2) set_data(t1, /*username*/ ctx[1]);
-			if (dirty & /*totalIncome*/ 32 && t6_value !== (t6_value = /*totalIncome*/ ctx[5].toFixed(2) + "")) set_data(t6, t6_value);
-			if (dirty & /*totalExpenses*/ 64 && t10_value !== (t10_value = /*totalExpenses*/ ctx[6].toFixed(2) + "")) set_data(t10, t10_value);
-			if (dirty & /*remainingBudget*/ 128 && t14_value !== (t14_value = /*remainingBudget*/ ctx[7].toFixed(2) + "")) set_data(t14, t14_value);
+			if (dirty[0] & /*username*/ 2) set_data(t1, /*username*/ ctx[1]);
+			if (dirty[0] & /*totalIncome*/ 32 && t6_value !== (t6_value = /*totalIncome*/ ctx[5].toFixed(2) + "")) set_data(t6, t6_value);
+			if (dirty[0] & /*totalExpenses*/ 64 && t10_value !== (t10_value = /*totalExpenses*/ ctx[6].toFixed(2) + "")) set_data(t10, t10_value);
+			if (dirty[0] & /*remainingBudget*/ 128 && t14_value !== (t14_value = /*remainingBudget*/ ctx[7].toFixed(2) + "")) set_data(t14, t14_value);
 
-			if (dirty & /*type*/ 512) {
+			if (dirty[0] & /*type*/ 512) {
 				select_option(select, /*type*/ ctx[9]);
 			}
 
-			if (dirty & /*amount*/ 1024 && to_number(input.value) !== /*amount*/ ctx[10]) {
+			if (dirty[0] & /*amount*/ 1024 && to_number(input.value) !== /*amount*/ ctx[10]) {
 				set_input_value(input, /*amount*/ ctx[10]);
 			}
 
-			if (dirty & /*removeTransaction, transactions*/ 33024) {
-				each_value = /*transactions*/ ctx[8];
+			if (dirty[0] & /*removeTransaction, transactions*/ 262400) {
+				each_value_1 = /*transactions*/ ctx[8];
 				let i;
 
-				for (i = 0; i < each_value.length; i += 1) {
-					const child_ctx = get_each_context(ctx, each_value, i);
+				for (i = 0; i < each_value_1.length; i += 1) {
+					const child_ctx = get_each_context_1(ctx, each_value_1, i);
 
 					if (each_blocks[i]) {
 						each_blocks[i].p(child_ctx, dirty);
 					} else {
-						each_blocks[i] = create_each_block(child_ctx);
+						each_blocks[i] = create_each_block_1(child_ctx);
 						each_blocks[i].c();
 						each_blocks[i].m(ul, null);
 					}
@@ -949,19 +968,35 @@ function create_else_block(ctx) {
 					each_blocks[i].d(1);
 				}
 
-				each_blocks.length = each_value.length;
+				each_blocks.length = each_value_1.length;
+			}
+
+			if (/*isAdmin*/ ctx[11]) {
+				if (if_block) {
+					if_block.p(ctx, dirty);
+				} else {
+					if_block = create_if_block_2(ctx);
+					if_block.c();
+					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+				}
+			} else if (if_block) {
+				if_block.d(1);
+				if_block = null;
 			}
 		},
 		d(detaching) {
 			if (detaching) detach(div3);
 			destroy_each(each_blocks, detaching);
+			if (detaching) detach(t30);
+			if (if_block) if_block.d(detaching);
+			if (detaching) detach(if_block_anchor);
 			mounted = false;
 			run_all(dispose);
 		}
 	};
 }
 
-// (365:10) {#if !isLoggedIn}
+// (442:10) {#if !isLoggedIn}
 function create_if_block(ctx) {
 	let div1;
 	let h1;
@@ -1059,17 +1094,17 @@ function create_if_block(ctx) {
 			this.h();
 		},
 		h() {
-			attr(h1, "class", "svelte-1r4p1qr");
+			attr(h1, "class", "svelte-1my7nxe");
 			attr(input0, "type", "text");
 			attr(input0, "placeholder", "Username");
-			attr(input0, "class", "svelte-1r4p1qr");
+			attr(input0, "class", "svelte-1my7nxe");
 			attr(input1, "type", "password");
 			attr(input1, "placeholder", "Password");
-			attr(input1, "class", "svelte-1r4p1qr");
-			attr(button0, "class", "svelte-1r4p1qr");
-			attr(button1, "class", "svelte-1r4p1qr");
-			attr(div0, "class", "auth-form svelte-1r4p1qr");
-			attr(div1, "class", "glass svelte-1r4p1qr");
+			attr(input1, "class", "svelte-1my7nxe");
+			attr(button0, "class", "svelte-1my7nxe");
+			attr(button1, "class", "svelte-1my7nxe");
+			attr(div0, "class", "auth-form svelte-1my7nxe");
+			attr(div1, "class", "glass svelte-1my7nxe");
 		},
 		m(target, anchor) {
 			insert_hydration(target, div1, anchor);
@@ -1081,7 +1116,7 @@ function create_if_block(ctx) {
 			set_input_value(input0, /*username*/ ctx[1]);
 			append_hydration(div0, t2);
 			append_hydration(div0, input1);
-			set_input_value(input1, /*password*/ ctx[0]);
+			set_input_value(input1, /*password*/ ctx[2]);
 			append_hydration(div0, t3);
 			if (if_block) if_block.m(div0, null);
 			append_hydration(div0, t4);
@@ -1093,16 +1128,16 @@ function create_if_block(ctx) {
 
 			if (!mounted) {
 				dispose = [
-					listen(input0, "input", /*input0_input_handler*/ ctx[17]),
-					listen(input1, "input", /*input1_input_handler*/ ctx[18]),
+					listen(input0, "input", /*input0_input_handler*/ ctx[20]),
+					listen(input1, "input", /*input1_input_handler*/ ctx[21]),
 					listen(button0, "click", function () {
 						if (is_function(/*isCreatingAccount*/ ctx[4]
-						? /*createAccount*/ ctx[12]
-						: /*login*/ ctx[11])) (/*isCreatingAccount*/ ctx[4]
-						? /*createAccount*/ ctx[12]
-						: /*login*/ ctx[11]).apply(this, arguments);
+						? /*createAccount*/ ctx[14]
+						: /*login*/ ctx[13])) (/*isCreatingAccount*/ ctx[4]
+						? /*createAccount*/ ctx[14]
+						: /*login*/ ctx[13]).apply(this, arguments);
 					}),
-					listen(button1, "click", /*click_handler*/ ctx[19])
+					listen(button1, "click", /*click_handler*/ ctx[22])
 				];
 
 				mounted = true;
@@ -1111,16 +1146,16 @@ function create_if_block(ctx) {
 		p(new_ctx, dirty) {
 			ctx = new_ctx;
 
-			if (dirty & /*isCreatingAccount*/ 16 && t0_value !== (t0_value = (/*isCreatingAccount*/ ctx[4]
+			if (dirty[0] & /*isCreatingAccount*/ 16 && t0_value !== (t0_value = (/*isCreatingAccount*/ ctx[4]
 			? 'Create Account'
 			: 'Login') + "")) set_data(t0, t0_value);
 
-			if (dirty & /*username*/ 2 && input0.value !== /*username*/ ctx[1]) {
+			if (dirty[0] & /*username*/ 2 && input0.value !== /*username*/ ctx[1]) {
 				set_input_value(input0, /*username*/ ctx[1]);
 			}
 
-			if (dirty & /*password*/ 1 && input1.value !== /*password*/ ctx[0]) {
-				set_input_value(input1, /*password*/ ctx[0]);
+			if (dirty[0] & /*password*/ 4 && input1.value !== /*password*/ ctx[2]) {
+				set_input_value(input1, /*password*/ ctx[2]);
 			}
 
 			if (/*errorMessage*/ ctx[3]) {
@@ -1136,11 +1171,11 @@ function create_if_block(ctx) {
 				if_block = null;
 			}
 
-			if (dirty & /*isCreatingAccount*/ 16 && t5_value !== (t5_value = (/*isCreatingAccount*/ ctx[4]
+			if (dirty[0] & /*isCreatingAccount*/ 16 && t5_value !== (t5_value = (/*isCreatingAccount*/ ctx[4]
 			? 'Create Account'
 			: 'Login') + "")) set_data(t5, t5_value);
 
-			if (dirty & /*isCreatingAccount*/ 16 && t7_value !== (t7_value = (/*isCreatingAccount*/ ctx[4]
+			if (dirty[0] & /*isCreatingAccount*/ 16 && t7_value !== (t7_value = (/*isCreatingAccount*/ ctx[4]
 			? 'Already have an account? Login'
 			: 'Need an account? Create one') + "")) set_data(t7, t7_value);
 		},
@@ -1153,18 +1188,18 @@ function create_if_block(ctx) {
 	};
 }
 
-// (403:8) {#each transactions as transaction}
-function create_each_block(ctx) {
+// (480:8) {#each transactions as transaction}
+function create_each_block_1(ctx) {
 	let li;
 	let span;
 
-	let t0_value = (/*transaction*/ ctx[25].type === 'income'
+	let t0_value = (/*transaction*/ ctx[33].type === 'income'
 	? 'Income'
 	: 'Expense') + "";
 
 	let t0;
 	let t1;
-	let t2_value = /*transaction*/ ctx[25].amount.toFixed(2) + "";
+	let t2_value = /*transaction*/ ctx[33].amount.toFixed(2) + "";
 	let t2;
 	let t3;
 	let button;
@@ -1174,7 +1209,7 @@ function create_each_block(ctx) {
 	let dispose;
 
 	function click_handler_1() {
-		return /*click_handler_1*/ ctx[22](/*transaction*/ ctx[25]);
+		return /*click_handler_1*/ ctx[25](/*transaction*/ ctx[33]);
 	}
 
 	return {
@@ -1209,9 +1244,9 @@ function create_each_block(ctx) {
 			this.h();
 		},
 		h() {
-			attr(span, "class", "svelte-1r4p1qr");
-			attr(button, "class", "svelte-1r4p1qr");
-			attr(li, "class", "svelte-1r4p1qr");
+			attr(span, "class", "svelte-1my7nxe");
+			attr(button, "class", "svelte-1my7nxe");
+			attr(li, "class", "svelte-1my7nxe");
 		},
 		m(target, anchor) {
 			insert_hydration(target, li, anchor);
@@ -1232,11 +1267,11 @@ function create_each_block(ctx) {
 		p(new_ctx, dirty) {
 			ctx = new_ctx;
 
-			if (dirty & /*transactions*/ 256 && t0_value !== (t0_value = (/*transaction*/ ctx[25].type === 'income'
+			if (dirty[0] & /*transactions*/ 256 && t0_value !== (t0_value = (/*transaction*/ ctx[33].type === 'income'
 			? 'Income'
 			: 'Expense') + "")) set_data(t0, t0_value);
 
-			if (dirty & /*transactions*/ 256 && t2_value !== (t2_value = /*transaction*/ ctx[25].amount.toFixed(2) + "")) set_data(t2, t2_value);
+			if (dirty[0] & /*transactions*/ 256 && t2_value !== (t2_value = /*transaction*/ ctx[33].amount.toFixed(2) + "")) set_data(t2, t2_value);
 		},
 		d(detaching) {
 			if (detaching) detach(li);
@@ -1246,7 +1281,177 @@ function create_each_block(ctx) {
 	};
 }
 
-// (371:6) {#if errorMessage}
+// (490:2) {#if isAdmin}
+function create_if_block_2(ctx) {
+	let div;
+	let h2;
+	let t0;
+	let t1;
+	let ul;
+	let each_value = /*allUsers*/ ctx[12];
+	let each_blocks = [];
+
+	for (let i = 0; i < each_value.length; i += 1) {
+		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+	}
+
+	return {
+		c() {
+			div = element("div");
+			h2 = element("h2");
+			t0 = text("Admin Dashboard");
+			t1 = space();
+			ul = element("ul");
+
+			for (let i = 0; i < each_blocks.length; i += 1) {
+				each_blocks[i].c();
+			}
+
+			this.h();
+		},
+		l(nodes) {
+			div = claim_element(nodes, "DIV", { class: true });
+			var div_nodes = children(div);
+			h2 = claim_element(div_nodes, "H2", { class: true });
+			var h2_nodes = children(h2);
+			t0 = claim_text(h2_nodes, "Admin Dashboard");
+			h2_nodes.forEach(detach);
+			t1 = claim_space(div_nodes);
+			ul = claim_element(div_nodes, "UL", { class: true });
+			var ul_nodes = children(ul);
+
+			for (let i = 0; i < each_blocks.length; i += 1) {
+				each_blocks[i].l(ul_nodes);
+			}
+
+			ul_nodes.forEach(detach);
+			div_nodes.forEach(detach);
+			this.h();
+		},
+		h() {
+			attr(h2, "class", "svelte-1my7nxe");
+			attr(ul, "class", "svelte-1my7nxe");
+			attr(div, "class", "admin-dashboard svelte-1my7nxe");
+		},
+		m(target, anchor) {
+			insert_hydration(target, div, anchor);
+			append_hydration(div, h2);
+			append_hydration(h2, t0);
+			append_hydration(div, t1);
+			append_hydration(div, ul);
+
+			for (let i = 0; i < each_blocks.length; i += 1) {
+				if (each_blocks[i]) {
+					each_blocks[i].m(ul, null);
+				}
+			}
+		},
+		p(ctx, dirty) {
+			if (dirty[0] & /*deleteUser, allUsers*/ 69632) {
+				each_value = /*allUsers*/ ctx[12];
+				let i;
+
+				for (i = 0; i < each_value.length; i += 1) {
+					const child_ctx = get_each_context(ctx, each_value, i);
+
+					if (each_blocks[i]) {
+						each_blocks[i].p(child_ctx, dirty);
+					} else {
+						each_blocks[i] = create_each_block(child_ctx);
+						each_blocks[i].c();
+						each_blocks[i].m(ul, null);
+					}
+				}
+
+				for (; i < each_blocks.length; i += 1) {
+					each_blocks[i].d(1);
+				}
+
+				each_blocks.length = each_value.length;
+			}
+		},
+		d(detaching) {
+			if (detaching) detach(div);
+			destroy_each(each_blocks, detaching);
+		}
+	};
+}
+
+// (494:8) {#each allUsers as user}
+function create_each_block(ctx) {
+	let li;
+	let span;
+	let t0_value = /*user*/ ctx[30].username + "";
+	let t0;
+	let t1;
+	let button;
+	let t2;
+	let t3;
+	let mounted;
+	let dispose;
+
+	function click_handler_2() {
+		return /*click_handler_2*/ ctx[26](/*user*/ ctx[30]);
+	}
+
+	return {
+		c() {
+			li = element("li");
+			span = element("span");
+			t0 = text(t0_value);
+			t1 = space();
+			button = element("button");
+			t2 = text("Delete");
+			t3 = space();
+			this.h();
+		},
+		l(nodes) {
+			li = claim_element(nodes, "LI", { class: true });
+			var li_nodes = children(li);
+			span = claim_element(li_nodes, "SPAN", {});
+			var span_nodes = children(span);
+			t0 = claim_text(span_nodes, t0_value);
+			span_nodes.forEach(detach);
+			t1 = claim_space(li_nodes);
+			button = claim_element(li_nodes, "BUTTON", { class: true });
+			var button_nodes = children(button);
+			t2 = claim_text(button_nodes, "Delete");
+			button_nodes.forEach(detach);
+			t3 = claim_space(li_nodes);
+			li_nodes.forEach(detach);
+			this.h();
+		},
+		h() {
+			attr(button, "class", "svelte-1my7nxe");
+			attr(li, "class", "svelte-1my7nxe");
+		},
+		m(target, anchor) {
+			insert_hydration(target, li, anchor);
+			append_hydration(li, span);
+			append_hydration(span, t0);
+			append_hydration(li, t1);
+			append_hydration(li, button);
+			append_hydration(button, t2);
+			append_hydration(li, t3);
+
+			if (!mounted) {
+				dispose = listen(button, "click", click_handler_2);
+				mounted = true;
+			}
+		},
+		p(new_ctx, dirty) {
+			ctx = new_ctx;
+			if (dirty[0] & /*allUsers*/ 4096 && t0_value !== (t0_value = /*user*/ ctx[30].username + "")) set_data(t0, t0_value);
+		},
+		d(detaching) {
+			if (detaching) detach(li);
+			mounted = false;
+			dispose();
+		}
+	};
+}
+
+// (448:6) {#if errorMessage}
 function create_if_block_1(ctx) {
 	let div;
 	let t;
@@ -1265,14 +1470,14 @@ function create_if_block_1(ctx) {
 			this.h();
 		},
 		h() {
-			attr(div, "class", "error-message svelte-1r4p1qr");
+			attr(div, "class", "error-message svelte-1my7nxe");
 		},
 		m(target, anchor) {
 			insert_hydration(target, div, anchor);
 			append_hydration(div, t);
 		},
 		p(ctx, dirty) {
-			if (dirty & /*errorMessage*/ 8) set_data(t, /*errorMessage*/ ctx[3]);
+			if (dirty[0] & /*errorMessage*/ 8) set_data(t, /*errorMessage*/ ctx[3]);
 		},
 		d(detaching) {
 			if (detaching) detach(div);
@@ -1284,7 +1489,7 @@ function create_fragment(ctx) {
 	let if_block_anchor;
 
 	function select_block_type(ctx, dirty) {
-		if (!/*isLoggedIn*/ ctx[2]) return create_if_block;
+		if (!/*isLoggedIn*/ ctx[0]) return create_if_block;
 		return create_else_block;
 	}
 
@@ -1304,7 +1509,7 @@ function create_fragment(ctx) {
 			if_block.m(target, anchor);
 			insert_hydration(target, if_block_anchor, anchor);
 		},
-		p(ctx, [dirty]) {
+		p(ctx, dirty) {
 			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
 				if_block.p(ctx, dirty);
 			} else {
@@ -1328,12 +1533,12 @@ function create_fragment(ctx) {
 
 function instance($$self, $$props, $$invalidate) {
 	let { props } = $$props;
-	let { password } = $$props;
-	let { username } = $$props;
 
 	// State for authentication
 	let isLoggedIn = false;
 
+	let username = '';
+	let password = '';
 	let errorMessage = '';
 	let isCreatingAccount = false;
 
@@ -1346,15 +1551,41 @@ function instance($$self, $$props, $$invalidate) {
 	let type = 'income';
 	let amount = 0;
 
+	// Admin state
+	let isAdmin = false;
+
+	let allUsers = [];
+
 	// Check if user is already logged in
 	onMount(() => {
 		const user = localStorage.getItem('user');
 
 		if (user) {
-			$$invalidate(2, isLoggedIn = true);
-			loadUserData(JSON.parse(user));
+			const parsedUser = JSON.parse(user);
+			$$invalidate(0, isLoggedIn = true);
+			$$invalidate(1, username = parsedUser.username);
+			$$invalidate(11, isAdmin = parsedUser.username === 'admin');
+			loadUserData(parsedUser);
 		}
+
+		loadAllUsers();
 	});
+
+	// Load all users for admin
+	function loadAllUsers() {
+		const users = [];
+
+		for (let i = 0; i < localStorage.length; i++) {
+			const key = localStorage.key(i);
+
+			if (key !== 'user' && key !== 'admin') {
+				const user = JSON.parse(localStorage.getItem(key));
+				users.push(user);
+			}
+		}
+
+		$$invalidate(12, allUsers = users);
+	}
 
 	// Load user data from localStorage
 	function loadUserData(user) {
@@ -1374,6 +1605,7 @@ function instance($$self, $$props, $$invalidate) {
 			transactions
 		};
 
+		localStorage.setItem(username, JSON.stringify(user));
 		localStorage.setItem('user', JSON.stringify(user));
 	}
 
@@ -1382,7 +1614,8 @@ function instance($$self, $$props, $$invalidate) {
 		const user = JSON.parse(localStorage.getItem(username));
 
 		if (user && user.password === password) {
-			$$invalidate(2, isLoggedIn = true);
+			$$invalidate(0, isLoggedIn = true);
+			$$invalidate(11, isAdmin = username === 'admin');
 			loadUserData(user);
 			$$invalidate(3, errorMessage = '');
 		} else {
@@ -1408,16 +1641,26 @@ function instance($$self, $$props, $$invalidate) {
 
 		localStorage.setItem(username, JSON.stringify(user));
 		localStorage.setItem('user', JSON.stringify(user));
-		$$invalidate(2, isLoggedIn = true);
+		$$invalidate(0, isLoggedIn = true);
 		$$invalidate(3, errorMessage = '');
 	}
 
 	// Handle logout
 	function logout() {
-		$$invalidate(2, isLoggedIn = false);
+		$$invalidate(0, isLoggedIn = false);
 		$$invalidate(1, username = '');
-		$$invalidate(0, password = '');
+		$$invalidate(2, password = '');
 		localStorage.removeItem('user');
+	}
+
+	// Handle user deletion (admin only)
+	function deleteUser(userToDelete) {
+		localStorage.removeItem(userToDelete);
+		loadAllUsers();
+
+		if (userToDelete === username) {
+			logout();
+		}
 	}
 
 	// Budget tracker functions
@@ -1460,7 +1703,7 @@ function instance($$self, $$props, $$invalidate) {
 
 	function input1_input_handler() {
 		password = this.value;
-		$$invalidate(0, password);
+		$$invalidate(2, password);
 	}
 
 	const click_handler = () => $$invalidate(4, isCreatingAccount = !isCreatingAccount);
@@ -1476,17 +1719,16 @@ function instance($$self, $$props, $$invalidate) {
 	}
 
 	const click_handler_1 = transaction => removeTransaction(transaction.id);
+	const click_handler_2 = user => deleteUser(user.username);
 
 	$$self.$$set = $$props => {
-		if ('props' in $$props) $$invalidate(16, props = $$props.props);
-		if ('password' in $$props) $$invalidate(0, password = $$props.password);
-		if ('username' in $$props) $$invalidate(1, username = $$props.username);
+		if ('props' in $$props) $$invalidate(19, props = $$props.props);
 	};
 
 	return [
-		password,
-		username,
 		isLoggedIn,
+		username,
+		password,
 		errorMessage,
 		isCreatingAccount,
 		totalIncome,
@@ -1495,9 +1737,12 @@ function instance($$self, $$props, $$invalidate) {
 		transactions,
 		type,
 		amount,
+		isAdmin,
+		allUsers,
 		login,
 		createAccount,
 		logout,
+		deleteUser,
 		addTransaction,
 		removeTransaction,
 		props,
@@ -1506,14 +1751,15 @@ function instance($$self, $$props, $$invalidate) {
 		click_handler,
 		select_change_handler,
 		input_input_handler,
-		click_handler_1
+		click_handler_1,
+		click_handler_2
 	];
 }
 
 class Component extends SvelteComponent {
 	constructor(options) {
 		super();
-		init(this, options, instance, create_fragment, safe_not_equal, { props: 16, password: 0, username: 1 });
+		init(this, options, instance, create_fragment, safe_not_equal, { props: 19 }, null, [-1, -1]);
 	}
 }
 
