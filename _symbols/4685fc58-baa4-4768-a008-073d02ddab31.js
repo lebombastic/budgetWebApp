@@ -172,6 +172,9 @@ function text(data) {
 function space() {
     return text(' ');
 }
+function empty() {
+    return text('');
+}
 function listen(node, event, handler, options) {
     node.addEventListener(event, handler, options);
     return () => node.removeEventListener(event, handler, options);
@@ -305,6 +308,23 @@ function select_value(select) {
 let current_component;
 function set_current_component(component) {
     current_component = component;
+}
+function get_current_component() {
+    if (!current_component)
+        throw new Error('Function called outside component initialization');
+    return current_component;
+}
+/**
+ * The `onMount` function schedules a callback to run as soon as the component has been mounted to the DOM.
+ * It must be called during the component's initialisation (but doesn't need to live *inside* the component;
+ * it can be called from an external module).
+ *
+ * `onMount` does not run inside a [server-side component](/docs#run-time-server-side-component-api).
+ *
+ * https://svelte.dev/docs#run-time-svelte-onmount
+ */
+function onMount(fn) {
+    get_current_component().$$.on_mount.push(fn);
 }
 
 const dirty_components = [];
@@ -558,22 +578,593 @@ class SvelteComponent {
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[12] = list[i];
+	child_ctx[25] = list[i];
 	return child_ctx;
 }
 
-// (213:6) {#each transactions as transaction}
+// (383:0) {:else}
+function create_else_block(ctx) {
+	let div3;
+	let h1;
+	let t0;
+	let t1;
+	let t2;
+	let t3;
+	let div0;
+	let p0;
+	let t4;
+	let span0;
+	let t5;
+	let t6_value = /*totalIncome*/ ctx[5].toFixed(2) + "";
+	let t6;
+	let t7;
+	let p1;
+	let t8;
+	let span1;
+	let t9;
+	let t10_value = /*totalExpenses*/ ctx[6].toFixed(2) + "";
+	let t10;
+	let t11;
+	let p2;
+	let t12;
+	let span2;
+	let t13;
+	let t14_value = /*remainingBudget*/ ctx[7].toFixed(2) + "";
+	let t14;
+	let t15;
+	let div1;
+	let label0;
+	let t16;
+	let t17;
+	let select;
+	let option0;
+	let t18;
+	let option1;
+	let t19;
+	let t20;
+	let label1;
+	let t21;
+	let t22;
+	let input;
+	let t23;
+	let button0;
+	let t24;
+	let t25;
+	let div2;
+	let h2;
+	let t26;
+	let t27;
+	let ul;
+	let t28;
+	let button1;
+	let t29;
+	let mounted;
+	let dispose;
+	let each_value = /*transactions*/ ctx[8];
+	let each_blocks = [];
+
+	for (let i = 0; i < each_value.length; i += 1) {
+		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+	}
+
+	return {
+		c() {
+			div3 = element("div");
+			h1 = element("h1");
+			t0 = text("Welcome, ");
+			t1 = text(/*username*/ ctx[1]);
+			t2 = text("!");
+			t3 = space();
+			div0 = element("div");
+			p0 = element("p");
+			t4 = text("Total Income: ");
+			span0 = element("span");
+			t5 = text("$");
+			t6 = text(t6_value);
+			t7 = space();
+			p1 = element("p");
+			t8 = text("Total Expenses: ");
+			span1 = element("span");
+			t9 = text("$");
+			t10 = text(t10_value);
+			t11 = space();
+			p2 = element("p");
+			t12 = text("Remaining Budget: ");
+			span2 = element("span");
+			t13 = text("$");
+			t14 = text(t14_value);
+			t15 = space();
+			div1 = element("div");
+			label0 = element("label");
+			t16 = text("Type:");
+			t17 = space();
+			select = element("select");
+			option0 = element("option");
+			t18 = text("Income");
+			option1 = element("option");
+			t19 = text("Expense");
+			t20 = space();
+			label1 = element("label");
+			t21 = text("Amount:");
+			t22 = space();
+			input = element("input");
+			t23 = space();
+			button0 = element("button");
+			t24 = text("Add Transaction");
+			t25 = space();
+			div2 = element("div");
+			h2 = element("h2");
+			t26 = text("Transactions");
+			t27 = space();
+			ul = element("ul");
+
+			for (let i = 0; i < each_blocks.length; i += 1) {
+				each_blocks[i].c();
+			}
+
+			t28 = space();
+			button1 = element("button");
+			t29 = text("Logout");
+			this.h();
+		},
+		l(nodes) {
+			div3 = claim_element(nodes, "DIV", { class: true });
+			var div3_nodes = children(div3);
+			h1 = claim_element(div3_nodes, "H1", { class: true });
+			var h1_nodes = children(h1);
+			t0 = claim_text(h1_nodes, "Welcome, ");
+			t1 = claim_text(h1_nodes, /*username*/ ctx[1]);
+			t2 = claim_text(h1_nodes, "!");
+			h1_nodes.forEach(detach);
+			t3 = claim_space(div3_nodes);
+			div0 = claim_element(div3_nodes, "DIV", { class: true });
+			var div0_nodes = children(div0);
+			p0 = claim_element(div0_nodes, "P", { class: true });
+			var p0_nodes = children(p0);
+			t4 = claim_text(p0_nodes, "Total Income: ");
+			span0 = claim_element(p0_nodes, "SPAN", { class: true });
+			var span0_nodes = children(span0);
+			t5 = claim_text(span0_nodes, "$");
+			t6 = claim_text(span0_nodes, t6_value);
+			span0_nodes.forEach(detach);
+			p0_nodes.forEach(detach);
+			t7 = claim_space(div0_nodes);
+			p1 = claim_element(div0_nodes, "P", { class: true });
+			var p1_nodes = children(p1);
+			t8 = claim_text(p1_nodes, "Total Expenses: ");
+			span1 = claim_element(p1_nodes, "SPAN", { class: true });
+			var span1_nodes = children(span1);
+			t9 = claim_text(span1_nodes, "$");
+			t10 = claim_text(span1_nodes, t10_value);
+			span1_nodes.forEach(detach);
+			p1_nodes.forEach(detach);
+			t11 = claim_space(div0_nodes);
+			p2 = claim_element(div0_nodes, "P", { class: true });
+			var p2_nodes = children(p2);
+			t12 = claim_text(p2_nodes, "Remaining Budget: ");
+			span2 = claim_element(p2_nodes, "SPAN", { class: true });
+			var span2_nodes = children(span2);
+			t13 = claim_text(span2_nodes, "$");
+			t14 = claim_text(span2_nodes, t14_value);
+			span2_nodes.forEach(detach);
+			p2_nodes.forEach(detach);
+			div0_nodes.forEach(detach);
+			t15 = claim_space(div3_nodes);
+			div1 = claim_element(div3_nodes, "DIV", { class: true });
+			var div1_nodes = children(div1);
+			label0 = claim_element(div1_nodes, "LABEL", { for: true, class: true });
+			var label0_nodes = children(label0);
+			t16 = claim_text(label0_nodes, "Type:");
+			label0_nodes.forEach(detach);
+			t17 = claim_space(div1_nodes);
+			select = claim_element(div1_nodes, "SELECT", { class: true });
+			var select_nodes = children(select);
+			option0 = claim_element(select_nodes, "OPTION", {});
+			var option0_nodes = children(option0);
+			t18 = claim_text(option0_nodes, "Income");
+			option0_nodes.forEach(detach);
+			option1 = claim_element(select_nodes, "OPTION", {});
+			var option1_nodes = children(option1);
+			t19 = claim_text(option1_nodes, "Expense");
+			option1_nodes.forEach(detach);
+			select_nodes.forEach(detach);
+			t20 = claim_space(div1_nodes);
+			label1 = claim_element(div1_nodes, "LABEL", { for: true, class: true });
+			var label1_nodes = children(label1);
+			t21 = claim_text(label1_nodes, "Amount:");
+			label1_nodes.forEach(detach);
+			t22 = claim_space(div1_nodes);
+
+			input = claim_element(div1_nodes, "INPUT", {
+				type: true,
+				placeholder: true,
+				class: true
+			});
+
+			t23 = claim_space(div1_nodes);
+			button0 = claim_element(div1_nodes, "BUTTON", { class: true });
+			var button0_nodes = children(button0);
+			t24 = claim_text(button0_nodes, "Add Transaction");
+			button0_nodes.forEach(detach);
+			div1_nodes.forEach(detach);
+			t25 = claim_space(div3_nodes);
+			div2 = claim_element(div3_nodes, "DIV", { class: true });
+			var div2_nodes = children(div2);
+			h2 = claim_element(div2_nodes, "H2", { class: true });
+			var h2_nodes = children(h2);
+			t26 = claim_text(h2_nodes, "Transactions");
+			h2_nodes.forEach(detach);
+			t27 = claim_space(div2_nodes);
+			ul = claim_element(div2_nodes, "UL", { class: true });
+			var ul_nodes = children(ul);
+
+			for (let i = 0; i < each_blocks.length; i += 1) {
+				each_blocks[i].l(ul_nodes);
+			}
+
+			ul_nodes.forEach(detach);
+			div2_nodes.forEach(detach);
+			t28 = claim_space(div3_nodes);
+			button1 = claim_element(div3_nodes, "BUTTON", { class: true });
+			var button1_nodes = children(button1);
+			t29 = claim_text(button1_nodes, "Logout");
+			button1_nodes.forEach(detach);
+			div3_nodes.forEach(detach);
+			this.h();
+		},
+		h() {
+			attr(h1, "class", "svelte-1be4q33");
+			attr(span0, "class", "svelte-1be4q33");
+			attr(p0, "class", "svelte-1be4q33");
+			attr(span1, "class", "svelte-1be4q33");
+			attr(p1, "class", "svelte-1be4q33");
+			attr(span2, "class", "svelte-1be4q33");
+			attr(p2, "class", "svelte-1be4q33");
+			attr(div0, "class", "budget-summary svelte-1be4q33");
+			attr(label0, "for", "type");
+			attr(label0, "class", "svelte-1be4q33");
+			option0.__value = "income";
+			option0.value = option0.__value;
+			option1.__value = "expense";
+			option1.value = option1.__value;
+			attr(select, "class", "svelte-1be4q33");
+			if (/*type*/ ctx[9] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[20].call(select));
+			attr(label1, "for", "amount");
+			attr(label1, "class", "svelte-1be4q33");
+			attr(input, "type", "number");
+			attr(input, "placeholder", "Enter amount");
+			attr(input, "class", "svelte-1be4q33");
+			attr(button0, "class", "svelte-1be4q33");
+			attr(div1, "class", "form svelte-1be4q33");
+			attr(h2, "class", "svelte-1be4q33");
+			attr(ul, "class", "svelte-1be4q33");
+			attr(div2, "class", "transactions svelte-1be4q33");
+			attr(button1, "class", "logout-button svelte-1be4q33");
+			attr(div3, "class", "dashboard svelte-1be4q33");
+		},
+		m(target, anchor) {
+			insert_hydration(target, div3, anchor);
+			append_hydration(div3, h1);
+			append_hydration(h1, t0);
+			append_hydration(h1, t1);
+			append_hydration(h1, t2);
+			append_hydration(div3, t3);
+			append_hydration(div3, div0);
+			append_hydration(div0, p0);
+			append_hydration(p0, t4);
+			append_hydration(p0, span0);
+			append_hydration(span0, t5);
+			append_hydration(span0, t6);
+			append_hydration(div0, t7);
+			append_hydration(div0, p1);
+			append_hydration(p1, t8);
+			append_hydration(p1, span1);
+			append_hydration(span1, t9);
+			append_hydration(span1, t10);
+			append_hydration(div0, t11);
+			append_hydration(div0, p2);
+			append_hydration(p2, t12);
+			append_hydration(p2, span2);
+			append_hydration(span2, t13);
+			append_hydration(span2, t14);
+			append_hydration(div3, t15);
+			append_hydration(div3, div1);
+			append_hydration(div1, label0);
+			append_hydration(label0, t16);
+			append_hydration(div1, t17);
+			append_hydration(div1, select);
+			append_hydration(select, option0);
+			append_hydration(option0, t18);
+			append_hydration(select, option1);
+			append_hydration(option1, t19);
+			select_option(select, /*type*/ ctx[9], true);
+			append_hydration(div1, t20);
+			append_hydration(div1, label1);
+			append_hydration(label1, t21);
+			append_hydration(div1, t22);
+			append_hydration(div1, input);
+			set_input_value(input, /*amount*/ ctx[10]);
+			append_hydration(div1, t23);
+			append_hydration(div1, button0);
+			append_hydration(button0, t24);
+			append_hydration(div3, t25);
+			append_hydration(div3, div2);
+			append_hydration(div2, h2);
+			append_hydration(h2, t26);
+			append_hydration(div2, t27);
+			append_hydration(div2, ul);
+
+			for (let i = 0; i < each_blocks.length; i += 1) {
+				if (each_blocks[i]) {
+					each_blocks[i].m(ul, null);
+				}
+			}
+
+			append_hydration(div3, t28);
+			append_hydration(div3, button1);
+			append_hydration(button1, t29);
+
+			if (!mounted) {
+				dispose = [
+					listen(select, "change", /*select_change_handler*/ ctx[20]),
+					listen(input, "input", /*input_input_handler*/ ctx[21]),
+					listen(button0, "click", /*addTransaction*/ ctx[14]),
+					listen(button1, "click", /*logout*/ ctx[13])
+				];
+
+				mounted = true;
+			}
+		},
+		p(ctx, dirty) {
+			if (dirty & /*username*/ 2) set_data(t1, /*username*/ ctx[1]);
+			if (dirty & /*totalIncome*/ 32 && t6_value !== (t6_value = /*totalIncome*/ ctx[5].toFixed(2) + "")) set_data(t6, t6_value);
+			if (dirty & /*totalExpenses*/ 64 && t10_value !== (t10_value = /*totalExpenses*/ ctx[6].toFixed(2) + "")) set_data(t10, t10_value);
+			if (dirty & /*remainingBudget*/ 128 && t14_value !== (t14_value = /*remainingBudget*/ ctx[7].toFixed(2) + "")) set_data(t14, t14_value);
+
+			if (dirty & /*type*/ 512) {
+				select_option(select, /*type*/ ctx[9]);
+			}
+
+			if (dirty & /*amount*/ 1024 && to_number(input.value) !== /*amount*/ ctx[10]) {
+				set_input_value(input, /*amount*/ ctx[10]);
+			}
+
+			if (dirty & /*removeTransaction, transactions*/ 33024) {
+				each_value = /*transactions*/ ctx[8];
+				let i;
+
+				for (i = 0; i < each_value.length; i += 1) {
+					const child_ctx = get_each_context(ctx, each_value, i);
+
+					if (each_blocks[i]) {
+						each_blocks[i].p(child_ctx, dirty);
+					} else {
+						each_blocks[i] = create_each_block(child_ctx);
+						each_blocks[i].c();
+						each_blocks[i].m(ul, null);
+					}
+				}
+
+				for (; i < each_blocks.length; i += 1) {
+					each_blocks[i].d(1);
+				}
+
+				each_blocks.length = each_value.length;
+			}
+		},
+		d(detaching) {
+			if (detaching) detach(div3);
+			destroy_each(each_blocks, detaching);
+			mounted = false;
+			run_all(dispose);
+		}
+	};
+}
+
+// (366:10) {#if !isLoggedIn}
+function create_if_block(ctx) {
+	let div1;
+	let h1;
+
+	let t0_value = (/*isCreatingAccount*/ ctx[4]
+	? 'Create Account'
+	: 'Login') + "";
+
+	let t0;
+	let t1;
+	let div0;
+	let input0;
+	let t2;
+	let input1;
+	let t3;
+	let t4;
+	let button0;
+
+	let t5_value = (/*isCreatingAccount*/ ctx[4]
+	? 'Create Account'
+	: 'Login') + "";
+
+	let t5;
+	let t6;
+	let button1;
+
+	let t7_value = (/*isCreatingAccount*/ ctx[4]
+	? 'Already have an account? Login'
+	: 'Need an account? Create one') + "";
+
+	let t7;
+	let mounted;
+	let dispose;
+	let if_block = /*errorMessage*/ ctx[3] && create_if_block_1(ctx);
+
+	return {
+		c() {
+			div1 = element("div");
+			h1 = element("h1");
+			t0 = text(t0_value);
+			t1 = space();
+			div0 = element("div");
+			input0 = element("input");
+			t2 = space();
+			input1 = element("input");
+			t3 = space();
+			if (if_block) if_block.c();
+			t4 = space();
+			button0 = element("button");
+			t5 = text(t5_value);
+			t6 = space();
+			button1 = element("button");
+			t7 = text(t7_value);
+			this.h();
+		},
+		l(nodes) {
+			div1 = claim_element(nodes, "DIV", { class: true });
+			var div1_nodes = children(div1);
+			h1 = claim_element(div1_nodes, "H1", { class: true });
+			var h1_nodes = children(h1);
+			t0 = claim_text(h1_nodes, t0_value);
+			h1_nodes.forEach(detach);
+			t1 = claim_space(div1_nodes);
+			div0 = claim_element(div1_nodes, "DIV", { class: true });
+			var div0_nodes = children(div0);
+
+			input0 = claim_element(div0_nodes, "INPUT", {
+				type: true,
+				placeholder: true,
+				class: true
+			});
+
+			t2 = claim_space(div0_nodes);
+
+			input1 = claim_element(div0_nodes, "INPUT", {
+				type: true,
+				placeholder: true,
+				class: true
+			});
+
+			t3 = claim_space(div0_nodes);
+			if (if_block) if_block.l(div0_nodes);
+			t4 = claim_space(div0_nodes);
+			button0 = claim_element(div0_nodes, "BUTTON", { class: true });
+			var button0_nodes = children(button0);
+			t5 = claim_text(button0_nodes, t5_value);
+			button0_nodes.forEach(detach);
+			t6 = claim_space(div0_nodes);
+			button1 = claim_element(div0_nodes, "BUTTON", { class: true });
+			var button1_nodes = children(button1);
+			t7 = claim_text(button1_nodes, t7_value);
+			button1_nodes.forEach(detach);
+			div0_nodes.forEach(detach);
+			div1_nodes.forEach(detach);
+			this.h();
+		},
+		h() {
+			attr(h1, "class", "svelte-1be4q33");
+			attr(input0, "type", "text");
+			attr(input0, "placeholder", "Username");
+			attr(input0, "class", "svelte-1be4q33");
+			attr(input1, "type", "password");
+			attr(input1, "placeholder", "Password");
+			attr(input1, "class", "svelte-1be4q33");
+			attr(button0, "class", "svelte-1be4q33");
+			attr(button1, "class", "svelte-1be4q33");
+			attr(div0, "class", "auth-form svelte-1be4q33");
+			attr(div1, "class", "glass svelte-1be4q33");
+		},
+		m(target, anchor) {
+			insert_hydration(target, div1, anchor);
+			append_hydration(div1, h1);
+			append_hydration(h1, t0);
+			append_hydration(div1, t1);
+			append_hydration(div1, div0);
+			append_hydration(div0, input0);
+			set_input_value(input0, /*username*/ ctx[1]);
+			append_hydration(div0, t2);
+			append_hydration(div0, input1);
+			set_input_value(input1, /*password*/ ctx[2]);
+			append_hydration(div0, t3);
+			if (if_block) if_block.m(div0, null);
+			append_hydration(div0, t4);
+			append_hydration(div0, button0);
+			append_hydration(button0, t5);
+			append_hydration(div0, t6);
+			append_hydration(div0, button1);
+			append_hydration(button1, t7);
+
+			if (!mounted) {
+				dispose = [
+					listen(input0, "input", /*input0_input_handler*/ ctx[17]),
+					listen(input1, "input", /*input1_input_handler*/ ctx[18]),
+					listen(button0, "click", function () {
+						if (is_function(/*isCreatingAccount*/ ctx[4]
+						? /*createAccount*/ ctx[12]
+						: /*login*/ ctx[11])) (/*isCreatingAccount*/ ctx[4]
+						? /*createAccount*/ ctx[12]
+						: /*login*/ ctx[11]).apply(this, arguments);
+					}),
+					listen(button1, "click", /*click_handler*/ ctx[19])
+				];
+
+				mounted = true;
+			}
+		},
+		p(new_ctx, dirty) {
+			ctx = new_ctx;
+
+			if (dirty & /*isCreatingAccount*/ 16 && t0_value !== (t0_value = (/*isCreatingAccount*/ ctx[4]
+			? 'Create Account'
+			: 'Login') + "")) set_data(t0, t0_value);
+
+			if (dirty & /*username*/ 2 && input0.value !== /*username*/ ctx[1]) {
+				set_input_value(input0, /*username*/ ctx[1]);
+			}
+
+			if (dirty & /*password*/ 4 && input1.value !== /*password*/ ctx[2]) {
+				set_input_value(input1, /*password*/ ctx[2]);
+			}
+
+			if (/*errorMessage*/ ctx[3]) {
+				if (if_block) {
+					if_block.p(ctx, dirty);
+				} else {
+					if_block = create_if_block_1(ctx);
+					if_block.c();
+					if_block.m(div0, t4);
+				}
+			} else if (if_block) {
+				if_block.d(1);
+				if_block = null;
+			}
+
+			if (dirty & /*isCreatingAccount*/ 16 && t5_value !== (t5_value = (/*isCreatingAccount*/ ctx[4]
+			? 'Create Account'
+			: 'Login') + "")) set_data(t5, t5_value);
+
+			if (dirty & /*isCreatingAccount*/ 16 && t7_value !== (t7_value = (/*isCreatingAccount*/ ctx[4]
+			? 'Already have an account? Login'
+			: 'Need an account? Create one') + "")) set_data(t7, t7_value);
+		},
+		d(detaching) {
+			if (detaching) detach(div1);
+			if (if_block) if_block.d();
+			mounted = false;
+			run_all(dispose);
+		}
+	};
+}
+
+// (404:8) {#each transactions as transaction}
 function create_each_block(ctx) {
 	let li;
 	let span;
 
-	let t0_value = (/*transaction*/ ctx[12].type === 'income'
+	let t0_value = (/*transaction*/ ctx[25].type === 'income'
 	? 'Income'
 	: 'Expense') + "";
 
 	let t0;
 	let t1;
-	let t2_value = /*transaction*/ ctx[12].amount.toFixed(2) + "";
+	let t2_value = /*transaction*/ ctx[25].amount.toFixed(2) + "";
 	let t2;
 	let t3;
 	let button;
@@ -582,8 +1173,8 @@ function create_each_block(ctx) {
 	let mounted;
 	let dispose;
 
-	function click_handler() {
-		return /*click_handler*/ ctx[11](/*transaction*/ ctx[12]);
+	function click_handler_1() {
+		return /*click_handler_1*/ ctx[22](/*transaction*/ ctx[25]);
 	}
 
 	return {
@@ -618,9 +1209,9 @@ function create_each_block(ctx) {
 			this.h();
 		},
 		h() {
-			attr(span, "class", "svelte-1z04o9t");
-			attr(button, "class", "svelte-1z04o9t");
-			attr(li, "class", "svelte-1z04o9t");
+			attr(span, "class", "svelte-1be4q33");
+			attr(button, "class", "svelte-1be4q33");
+			attr(li, "class", "svelte-1be4q33");
 		},
 		m(target, anchor) {
 			insert_hydration(target, li, anchor);
@@ -634,18 +1225,18 @@ function create_each_block(ctx) {
 			append_hydration(li, t5);
 
 			if (!mounted) {
-				dispose = listen(button, "click", click_handler);
+				dispose = listen(button, "click", click_handler_1);
 				mounted = true;
 			}
 		},
 		p(new_ctx, dirty) {
 			ctx = new_ctx;
 
-			if (dirty & /*transactions*/ 8 && t0_value !== (t0_value = (/*transaction*/ ctx[12].type === 'income'
+			if (dirty & /*transactions*/ 256 && t0_value !== (t0_value = (/*transaction*/ ctx[25].type === 'income'
 			? 'Income'
 			: 'Expense') + "")) set_data(t0, t0_value);
 
-			if (dirty & /*transactions*/ 8 && t2_value !== (t2_value = /*transaction*/ ctx[12].amount.toFixed(2) + "")) set_data(t2, t2_value);
+			if (dirty & /*transactions*/ 256 && t2_value !== (t2_value = /*transaction*/ ctx[25].amount.toFixed(2) + "")) set_data(t2, t2_value);
 		},
 		d(detaching) {
 			if (detaching) detach(li);
@@ -655,369 +1246,181 @@ function create_each_block(ctx) {
 	};
 }
 
-function create_fragment(ctx) {
-	let div3;
-	let h1;
-	let t0;
-	let t1;
-	let div0;
-	let p0;
-	let t2;
-	let span0;
-	let t3;
-	let t4_value = /*totalIncome*/ ctx[0].toFixed(2) + "";
-	let t4;
-	let t5;
-	let p1;
-	let t6;
-	let span1;
-	let t7;
-	let t8_value = /*totalExpenses*/ ctx[1].toFixed(2) + "";
-	let t8;
-	let t9;
-	let p2;
-	let t10;
-	let span2;
-	let t11;
-	let t12_value = /*remainingBudget*/ ctx[2].toFixed(2) + "";
-	let t12;
-	let t13;
-	let div1;
-	let label0;
-	let t14;
-	let t15;
-	let select;
-	let option0;
-	let t16;
-	let option1;
-	let t17;
-	let t18;
-	let label1;
-	let t19;
-	let t20;
-	let input;
-	let t21;
-	let button;
-	let t22;
-	let t23;
-	let div2;
-	let h2;
-	let t24;
-	let t25;
-	let ul;
-	let mounted;
-	let dispose;
-	let each_value = /*transactions*/ ctx[3];
-	let each_blocks = [];
-
-	for (let i = 0; i < each_value.length; i += 1) {
-		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
-	}
+// (372:6) {#if errorMessage}
+function create_if_block_1(ctx) {
+	let div;
+	let t;
 
 	return {
 		c() {
-			div3 = element("div");
-			h1 = element("h1");
-			t0 = text("Budget Tracker");
-			t1 = space();
-			div0 = element("div");
-			p0 = element("p");
-			t2 = text("Total Income: ");
-			span0 = element("span");
-			t3 = text("$");
-			t4 = text(t4_value);
-			t5 = space();
-			p1 = element("p");
-			t6 = text("Total Expenses: ");
-			span1 = element("span");
-			t7 = text("$");
-			t8 = text(t8_value);
-			t9 = space();
-			p2 = element("p");
-			t10 = text("Remaining Budget: ");
-			span2 = element("span");
-			t11 = text("$");
-			t12 = text(t12_value);
-			t13 = space();
-			div1 = element("div");
-			label0 = element("label");
-			t14 = text("Type:");
-			t15 = space();
-			select = element("select");
-			option0 = element("option");
-			t16 = text("Income");
-			option1 = element("option");
-			t17 = text("Expense");
-			t18 = space();
-			label1 = element("label");
-			t19 = text("Amount:");
-			t20 = space();
-			input = element("input");
-			t21 = space();
-			button = element("button");
-			t22 = text("Add Transaction");
-			t23 = space();
-			div2 = element("div");
-			h2 = element("h2");
-			t24 = text("Transactions");
-			t25 = space();
-			ul = element("ul");
-
-			for (let i = 0; i < each_blocks.length; i += 1) {
-				each_blocks[i].c();
-			}
-
+			div = element("div");
+			t = text(/*errorMessage*/ ctx[3]);
 			this.h();
 		},
 		l(nodes) {
-			div3 = claim_element(nodes, "DIV", { class: true });
-			var div3_nodes = children(div3);
-			h1 = claim_element(div3_nodes, "H1", { class: true });
-			var h1_nodes = children(h1);
-			t0 = claim_text(h1_nodes, "Budget Tracker");
-			h1_nodes.forEach(detach);
-			t1 = claim_space(div3_nodes);
-			div0 = claim_element(div3_nodes, "DIV", { class: true });
-			var div0_nodes = children(div0);
-			p0 = claim_element(div0_nodes, "P", { class: true });
-			var p0_nodes = children(p0);
-			t2 = claim_text(p0_nodes, "Total Income: ");
-			span0 = claim_element(p0_nodes, "SPAN", { class: true });
-			var span0_nodes = children(span0);
-			t3 = claim_text(span0_nodes, "$");
-			t4 = claim_text(span0_nodes, t4_value);
-			span0_nodes.forEach(detach);
-			p0_nodes.forEach(detach);
-			t5 = claim_space(div0_nodes);
-			p1 = claim_element(div0_nodes, "P", { class: true });
-			var p1_nodes = children(p1);
-			t6 = claim_text(p1_nodes, "Total Expenses: ");
-			span1 = claim_element(p1_nodes, "SPAN", { class: true });
-			var span1_nodes = children(span1);
-			t7 = claim_text(span1_nodes, "$");
-			t8 = claim_text(span1_nodes, t8_value);
-			span1_nodes.forEach(detach);
-			p1_nodes.forEach(detach);
-			t9 = claim_space(div0_nodes);
-			p2 = claim_element(div0_nodes, "P", { class: true });
-			var p2_nodes = children(p2);
-			t10 = claim_text(p2_nodes, "Remaining Budget: ");
-			span2 = claim_element(p2_nodes, "SPAN", { class: true });
-			var span2_nodes = children(span2);
-			t11 = claim_text(span2_nodes, "$");
-			t12 = claim_text(span2_nodes, t12_value);
-			span2_nodes.forEach(detach);
-			p2_nodes.forEach(detach);
-			div0_nodes.forEach(detach);
-			t13 = claim_space(div3_nodes);
-			div1 = claim_element(div3_nodes, "DIV", { class: true });
-			var div1_nodes = children(div1);
-			label0 = claim_element(div1_nodes, "LABEL", { for: true, class: true });
-			var label0_nodes = children(label0);
-			t14 = claim_text(label0_nodes, "Type:");
-			label0_nodes.forEach(detach);
-			t15 = claim_space(div1_nodes);
-			select = claim_element(div1_nodes, "SELECT", { class: true });
-			var select_nodes = children(select);
-			option0 = claim_element(select_nodes, "OPTION", {});
-			var option0_nodes = children(option0);
-			t16 = claim_text(option0_nodes, "Income");
-			option0_nodes.forEach(detach);
-			option1 = claim_element(select_nodes, "OPTION", {});
-			var option1_nodes = children(option1);
-			t17 = claim_text(option1_nodes, "Expense");
-			option1_nodes.forEach(detach);
-			select_nodes.forEach(detach);
-			t18 = claim_space(div1_nodes);
-			label1 = claim_element(div1_nodes, "LABEL", { for: true, class: true });
-			var label1_nodes = children(label1);
-			t19 = claim_text(label1_nodes, "Amount:");
-			label1_nodes.forEach(detach);
-			t20 = claim_space(div1_nodes);
-
-			input = claim_element(div1_nodes, "INPUT", {
-				type: true,
-				placeholder: true,
-				class: true
-			});
-
-			t21 = claim_space(div1_nodes);
-			button = claim_element(div1_nodes, "BUTTON", { class: true });
-			var button_nodes = children(button);
-			t22 = claim_text(button_nodes, "Add Transaction");
-			button_nodes.forEach(detach);
-			div1_nodes.forEach(detach);
-			t23 = claim_space(div3_nodes);
-			div2 = claim_element(div3_nodes, "DIV", { class: true });
-			var div2_nodes = children(div2);
-			h2 = claim_element(div2_nodes, "H2", { class: true });
-			var h2_nodes = children(h2);
-			t24 = claim_text(h2_nodes, "Transactions");
-			h2_nodes.forEach(detach);
-			t25 = claim_space(div2_nodes);
-			ul = claim_element(div2_nodes, "UL", { class: true });
-			var ul_nodes = children(ul);
-
-			for (let i = 0; i < each_blocks.length; i += 1) {
-				each_blocks[i].l(ul_nodes);
-			}
-
-			ul_nodes.forEach(detach);
-			div2_nodes.forEach(detach);
-			div3_nodes.forEach(detach);
+			div = claim_element(nodes, "DIV", { class: true });
+			var div_nodes = children(div);
+			t = claim_text(div_nodes, /*errorMessage*/ ctx[3]);
+			div_nodes.forEach(detach);
 			this.h();
 		},
 		h() {
-			attr(h1, "class", "svelte-1z04o9t");
-			attr(span0, "class", "svelte-1z04o9t");
-			attr(p0, "class", "svelte-1z04o9t");
-			attr(span1, "class", "svelte-1z04o9t");
-			attr(p1, "class", "svelte-1z04o9t");
-			attr(span2, "class", "svelte-1z04o9t");
-			attr(p2, "class", "svelte-1z04o9t");
-			attr(div0, "class", "budget-summary svelte-1z04o9t");
-			attr(label0, "for", "type");
-			attr(label0, "class", "svelte-1z04o9t");
-			option0.__value = "income";
-			option0.value = option0.__value;
-			option1.__value = "expense";
-			option1.value = option1.__value;
-			attr(select, "class", "svelte-1z04o9t");
-			if (/*type*/ ctx[4] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[9].call(select));
-			attr(label1, "for", "amount");
-			attr(label1, "class", "svelte-1z04o9t");
-			attr(input, "type", "number");
-			attr(input, "placeholder", "Enter amount");
-			attr(input, "class", "svelte-1z04o9t");
-			attr(button, "class", "svelte-1z04o9t");
-			attr(div1, "class", "form svelte-1z04o9t");
-			attr(h2, "class", "svelte-1z04o9t");
-			attr(ul, "class", "svelte-1z04o9t");
-			attr(div2, "class", "transactions svelte-1z04o9t");
-			attr(div3, "class", "container svelte-1z04o9t");
+			attr(div, "class", "error-message svelte-1be4q33");
 		},
 		m(target, anchor) {
-			insert_hydration(target, div3, anchor);
-			append_hydration(div3, h1);
-			append_hydration(h1, t0);
-			append_hydration(div3, t1);
-			append_hydration(div3, div0);
-			append_hydration(div0, p0);
-			append_hydration(p0, t2);
-			append_hydration(p0, span0);
-			append_hydration(span0, t3);
-			append_hydration(span0, t4);
-			append_hydration(div0, t5);
-			append_hydration(div0, p1);
-			append_hydration(p1, t6);
-			append_hydration(p1, span1);
-			append_hydration(span1, t7);
-			append_hydration(span1, t8);
-			append_hydration(div0, t9);
-			append_hydration(div0, p2);
-			append_hydration(p2, t10);
-			append_hydration(p2, span2);
-			append_hydration(span2, t11);
-			append_hydration(span2, t12);
-			append_hydration(div3, t13);
-			append_hydration(div3, div1);
-			append_hydration(div1, label0);
-			append_hydration(label0, t14);
-			append_hydration(div1, t15);
-			append_hydration(div1, select);
-			append_hydration(select, option0);
-			append_hydration(option0, t16);
-			append_hydration(select, option1);
-			append_hydration(option1, t17);
-			select_option(select, /*type*/ ctx[4], true);
-			append_hydration(div1, t18);
-			append_hydration(div1, label1);
-			append_hydration(label1, t19);
-			append_hydration(div1, t20);
-			append_hydration(div1, input);
-			set_input_value(input, /*amount*/ ctx[5]);
-			append_hydration(div1, t21);
-			append_hydration(div1, button);
-			append_hydration(button, t22);
-			append_hydration(div3, t23);
-			append_hydration(div3, div2);
-			append_hydration(div2, h2);
-			append_hydration(h2, t24);
-			append_hydration(div2, t25);
-			append_hydration(div2, ul);
+			insert_hydration(target, div, anchor);
+			append_hydration(div, t);
+		},
+		p(ctx, dirty) {
+			if (dirty & /*errorMessage*/ 8) set_data(t, /*errorMessage*/ ctx[3]);
+		},
+		d(detaching) {
+			if (detaching) detach(div);
+		}
+	};
+}
 
-			for (let i = 0; i < each_blocks.length; i += 1) {
-				if (each_blocks[i]) {
-					each_blocks[i].m(ul, null);
-				}
-			}
+function create_fragment(ctx) {
+	let if_block_anchor;
 
-			if (!mounted) {
-				dispose = [
-					listen(select, "change", /*select_change_handler*/ ctx[9]),
-					listen(input, "input", /*input_input_handler*/ ctx[10]),
-					listen(button, "click", /*addTransaction*/ ctx[6])
-				];
+	function select_block_type(ctx, dirty) {
+		if (!/*isLoggedIn*/ ctx[0]) return create_if_block;
+		return create_else_block;
+	}
 
-				mounted = true;
-			}
+	let current_block_type = select_block_type(ctx);
+	let if_block = current_block_type(ctx);
+
+	return {
+		c() {
+			if_block.c();
+			if_block_anchor = empty();
+		},
+		l(nodes) {
+			if_block.l(nodes);
+			if_block_anchor = empty();
+		},
+		m(target, anchor) {
+			if_block.m(target, anchor);
+			insert_hydration(target, if_block_anchor, anchor);
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*totalIncome*/ 1 && t4_value !== (t4_value = /*totalIncome*/ ctx[0].toFixed(2) + "")) set_data(t4, t4_value);
-			if (dirty & /*totalExpenses*/ 2 && t8_value !== (t8_value = /*totalExpenses*/ ctx[1].toFixed(2) + "")) set_data(t8, t8_value);
-			if (dirty & /*remainingBudget*/ 4 && t12_value !== (t12_value = /*remainingBudget*/ ctx[2].toFixed(2) + "")) set_data(t12, t12_value);
+			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+				if_block.p(ctx, dirty);
+			} else {
+				if_block.d(1);
+				if_block = current_block_type(ctx);
 
-			if (dirty & /*type*/ 16) {
-				select_option(select, /*type*/ ctx[4]);
-			}
-
-			if (dirty & /*amount*/ 32 && to_number(input.value) !== /*amount*/ ctx[5]) {
-				set_input_value(input, /*amount*/ ctx[5]);
-			}
-
-			if (dirty & /*removeTransaction, transactions*/ 136) {
-				each_value = /*transactions*/ ctx[3];
-				let i;
-
-				for (i = 0; i < each_value.length; i += 1) {
-					const child_ctx = get_each_context(ctx, each_value, i);
-
-					if (each_blocks[i]) {
-						each_blocks[i].p(child_ctx, dirty);
-					} else {
-						each_blocks[i] = create_each_block(child_ctx);
-						each_blocks[i].c();
-						each_blocks[i].m(ul, null);
-					}
+				if (if_block) {
+					if_block.c();
+					if_block.m(if_block_anchor.parentNode, if_block_anchor);
 				}
-
-				for (; i < each_blocks.length; i += 1) {
-					each_blocks[i].d(1);
-				}
-
-				each_blocks.length = each_value.length;
 			}
 		},
 		i: noop,
 		o: noop,
 		d(detaching) {
-			if (detaching) detach(div3);
-			destroy_each(each_blocks, detaching);
-			mounted = false;
-			run_all(dispose);
+			if_block.d(detaching);
+			if (detaching) detach(if_block_anchor);
 		}
 	};
 }
 
 function instance($$self, $$props, $$invalidate) {
 	let { props } = $$props;
+
+	// State for authentication
+	let isLoggedIn = false;
+
+	let username = '';
+	let password = '';
+	let errorMessage = '';
+	let isCreatingAccount = false;
+
+	// State for budget tracker
 	let totalIncome = 0;
+
 	let totalExpenses = 0;
 	let remainingBudget = 0;
 	let transactions = [];
 	let type = 'income';
 	let amount = 0;
 
+	// Check if user is already logged in
+	onMount(() => {
+		const user = localStorage.getItem('user');
+
+		if (user) {
+			$$invalidate(0, isLoggedIn = true);
+			loadUserData(JSON.parse(user));
+		}
+	});
+
+	// Load user data from localStorage
+	function loadUserData(user) {
+		$$invalidate(5, totalIncome = user.totalIncome || 0);
+		$$invalidate(6, totalExpenses = user.totalExpenses || 0);
+		$$invalidate(7, remainingBudget = user.remainingBudget || 0);
+		$$invalidate(8, transactions = user.transactions || []);
+	}
+
+	// Save user data to localStorage
+	function saveUserData() {
+		const user = {
+			username,
+			totalIncome,
+			totalExpenses,
+			remainingBudget,
+			transactions
+		};
+
+		localStorage.setItem('user', JSON.stringify(user));
+	}
+
+	// Handle login
+	function login() {
+		const user = JSON.parse(localStorage.getItem(username));
+
+		if (user && user.password === password) {
+			$$invalidate(0, isLoggedIn = true);
+			loadUserData(user);
+			$$invalidate(3, errorMessage = '');
+		} else {
+			$$invalidate(3, errorMessage = 'Invalid username or password.');
+		}
+	}
+
+	// Handle account creation
+	function createAccount() {
+		if (localStorage.getItem(username)) {
+			$$invalidate(3, errorMessage = 'Username already exists.');
+			return;
+		}
+
+		const user = {
+			username,
+			password,
+			totalIncome: 0,
+			totalExpenses: 0,
+			remainingBudget: 0,
+			transactions: []
+		};
+
+		localStorage.setItem(username, JSON.stringify(user));
+		localStorage.setItem('user', JSON.stringify(user));
+		$$invalidate(0, isLoggedIn = true);
+		$$invalidate(3, errorMessage = '');
+	}
+
+	// Handle logout
+	function logout() {
+		$$invalidate(0, isLoggedIn = false);
+		$$invalidate(1, username = '');
+		$$invalidate(2, password = '');
+		localStorage.removeItem('user');
+	}
+
+	// Budget tracker functions
 	function addTransaction() {
 		if (amount <= 0 || isNaN(amount)) {
 			alert('Please enter a valid amount.');
@@ -1025,65 +1428,90 @@ function instance($$self, $$props, $$invalidate) {
 		}
 
 		if (type === 'income') {
-			$$invalidate(0, totalIncome += amount);
+			$$invalidate(5, totalIncome += amount);
 		} else if (type === 'expense') {
-			$$invalidate(1, totalExpenses += amount);
+			$$invalidate(6, totalExpenses += amount);
 		}
 
-		$$invalidate(2, remainingBudget = totalIncome - totalExpenses);
-		$$invalidate(3, transactions = [...transactions, { type, amount, id: Date.now() }]);
-		$$invalidate(5, amount = 0); // Reset input
+		$$invalidate(7, remainingBudget = totalIncome - totalExpenses);
+		$$invalidate(8, transactions = [...transactions, { type, amount, id: Date.now() }]);
+		$$invalidate(10, amount = 0); // Reset input
+		saveUserData();
 	}
 
 	function removeTransaction(id) {
 		const transaction = transactions.find(t => t.id === id);
 
 		if (transaction.type === 'income') {
-			$$invalidate(0, totalIncome -= transaction.amount);
+			$$invalidate(5, totalIncome -= transaction.amount);
 		} else if (transaction.type === 'expense') {
-			$$invalidate(1, totalExpenses -= transaction.amount);
+			$$invalidate(6, totalExpenses -= transaction.amount);
 		}
 
-		$$invalidate(2, remainingBudget = totalIncome - totalExpenses);
-		$$invalidate(3, transactions = transactions.filter(t => t.id !== id));
+		$$invalidate(7, remainingBudget = totalIncome - totalExpenses);
+		$$invalidate(8, transactions = transactions.filter(t => t.id !== id));
+		saveUserData();
 	}
+
+	function input0_input_handler() {
+		username = this.value;
+		$$invalidate(1, username);
+	}
+
+	function input1_input_handler() {
+		password = this.value;
+		$$invalidate(2, password);
+	}
+
+	const click_handler = () => $$invalidate(4, isCreatingAccount = !isCreatingAccount);
 
 	function select_change_handler() {
 		type = select_value(this);
-		$$invalidate(4, type);
+		$$invalidate(9, type);
 	}
 
 	function input_input_handler() {
 		amount = to_number(this.value);
-		$$invalidate(5, amount);
+		$$invalidate(10, amount);
 	}
 
-	const click_handler = transaction => removeTransaction(transaction.id);
+	const click_handler_1 = transaction => removeTransaction(transaction.id);
 
 	$$self.$$set = $$props => {
-		if ('props' in $$props) $$invalidate(8, props = $$props.props);
+		if ('props' in $$props) $$invalidate(16, props = $$props.props);
 	};
 
 	return [
+		isLoggedIn,
+		username,
+		password,
+		errorMessage,
+		isCreatingAccount,
 		totalIncome,
 		totalExpenses,
 		remainingBudget,
 		transactions,
 		type,
 		amount,
+		login,
+		createAccount,
+		logout,
 		addTransaction,
 		removeTransaction,
 		props,
+		input0_input_handler,
+		input1_input_handler,
+		click_handler,
 		select_change_handler,
 		input_input_handler,
-		click_handler
+		click_handler_1
 	];
 }
 
 class Component extends SvelteComponent {
 	constructor(options) {
 		super();
-		init(this, options, instance, create_fragment, safe_not_equal, { props: 8 });
+		init(this, options, instance, create_fragment, safe_not_equal, { props: 16 });
 	}
 }
 
