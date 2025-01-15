@@ -562,7 +562,7 @@ function get_each_context(ctx, list, i) {
 	return child_ctx;
 }
 
-// (145:6) {#each transactions as transaction}
+// (213:6) {#each transactions as transaction}
 function create_each_block(ctx) {
 	let li;
 	let span;
@@ -602,7 +602,7 @@ function create_each_block(ctx) {
 		l(nodes) {
 			li = claim_element(nodes, "LI", { class: true });
 			var li_nodes = children(li);
-			span = claim_element(li_nodes, "SPAN", {});
+			span = claim_element(li_nodes, "SPAN", { class: true });
 			var span_nodes = children(span);
 			t0 = claim_text(span_nodes, t0_value);
 			t1 = claim_text(span_nodes, ": $");
@@ -618,8 +618,9 @@ function create_each_block(ctx) {
 			this.h();
 		},
 		h() {
-			attr(button, "class", "svelte-1bhjeaq");
-			attr(li, "class", "svelte-1bhjeaq");
+			attr(span, "class", "svelte-1z04o9t");
+			attr(button, "class", "svelte-1z04o9t");
+			attr(li, "class", "svelte-1z04o9t");
 		},
 		m(target, anchor) {
 			insert_hydration(target, li, anchor);
@@ -754,7 +755,7 @@ function create_fragment(ctx) {
 			input = element("input");
 			t21 = space();
 			button = element("button");
-			t22 = text("Add");
+			t22 = text("Add Transaction");
 			t23 = space();
 			div2 = element("div");
 			h2 = element("h2");
@@ -771,7 +772,7 @@ function create_fragment(ctx) {
 		l(nodes) {
 			div3 = claim_element(nodes, "DIV", { class: true });
 			var div3_nodes = children(div3);
-			h1 = claim_element(div3_nodes, "H1", {});
+			h1 = claim_element(div3_nodes, "H1", { class: true });
 			var h1_nodes = children(h1);
 			t0 = claim_text(h1_nodes, "Budget Tracker");
 			h1_nodes.forEach(detach);
@@ -781,7 +782,7 @@ function create_fragment(ctx) {
 			p0 = claim_element(div0_nodes, "P", { class: true });
 			var p0_nodes = children(p0);
 			t2 = claim_text(p0_nodes, "Total Income: ");
-			span0 = claim_element(p0_nodes, "SPAN", {});
+			span0 = claim_element(p0_nodes, "SPAN", { class: true });
 			var span0_nodes = children(span0);
 			t3 = claim_text(span0_nodes, "$");
 			t4 = claim_text(span0_nodes, t4_value);
@@ -791,7 +792,7 @@ function create_fragment(ctx) {
 			p1 = claim_element(div0_nodes, "P", { class: true });
 			var p1_nodes = children(p1);
 			t6 = claim_text(p1_nodes, "Total Expenses: ");
-			span1 = claim_element(p1_nodes, "SPAN", {});
+			span1 = claim_element(p1_nodes, "SPAN", { class: true });
 			var span1_nodes = children(span1);
 			t7 = claim_text(span1_nodes, "$");
 			t8 = claim_text(span1_nodes, t8_value);
@@ -801,7 +802,7 @@ function create_fragment(ctx) {
 			p2 = claim_element(div0_nodes, "P", { class: true });
 			var p2_nodes = children(p2);
 			t10 = claim_text(p2_nodes, "Remaining Budget: ");
-			span2 = claim_element(p2_nodes, "SPAN", {});
+			span2 = claim_element(p2_nodes, "SPAN", { class: true });
 			var span2_nodes = children(span2);
 			t11 = claim_text(span2_nodes, "$");
 			t12 = claim_text(span2_nodes, t12_value);
@@ -843,13 +844,13 @@ function create_fragment(ctx) {
 			t21 = claim_space(div1_nodes);
 			button = claim_element(div1_nodes, "BUTTON", { class: true });
 			var button_nodes = children(button);
-			t22 = claim_text(button_nodes, "Add");
+			t22 = claim_text(button_nodes, "Add Transaction");
 			button_nodes.forEach(detach);
 			div1_nodes.forEach(detach);
 			t23 = claim_space(div3_nodes);
 			div2 = claim_element(div3_nodes, "DIV", { class: true });
 			var div2_nodes = children(div2);
-			h2 = claim_element(div2_nodes, "H2", {});
+			h2 = claim_element(div2_nodes, "H2", { class: true });
 			var h2_nodes = children(h2);
 			t24 = claim_text(h2_nodes, "Transactions");
 			h2_nodes.forEach(detach);
@@ -867,28 +868,33 @@ function create_fragment(ctx) {
 			this.h();
 		},
 		h() {
-			attr(p0, "class", "svelte-1bhjeaq");
-			attr(p1, "class", "svelte-1bhjeaq");
-			attr(p2, "class", "svelte-1bhjeaq");
-			attr(div0, "class", "budget-summary svelte-1bhjeaq");
+			attr(h1, "class", "svelte-1z04o9t");
+			attr(span0, "class", "svelte-1z04o9t");
+			attr(p0, "class", "svelte-1z04o9t");
+			attr(span1, "class", "svelte-1z04o9t");
+			attr(p1, "class", "svelte-1z04o9t");
+			attr(span2, "class", "svelte-1z04o9t");
+			attr(p2, "class", "svelte-1z04o9t");
+			attr(div0, "class", "budget-summary svelte-1z04o9t");
 			attr(label0, "for", "type");
-			attr(label0, "class", "svelte-1bhjeaq");
+			attr(label0, "class", "svelte-1z04o9t");
 			option0.__value = "income";
 			option0.value = option0.__value;
 			option1.__value = "expense";
 			option1.value = option1.__value;
-			attr(select, "class", "svelte-1bhjeaq");
+			attr(select, "class", "svelte-1z04o9t");
 			if (/*type*/ ctx[4] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[9].call(select));
 			attr(label1, "for", "amount");
-			attr(label1, "class", "svelte-1bhjeaq");
+			attr(label1, "class", "svelte-1z04o9t");
 			attr(input, "type", "number");
 			attr(input, "placeholder", "Enter amount");
-			attr(input, "class", "svelte-1bhjeaq");
-			attr(button, "class", "svelte-1bhjeaq");
-			attr(div1, "class", "form svelte-1bhjeaq");
-			attr(ul, "class", "svelte-1bhjeaq");
-			attr(div2, "class", "transactions svelte-1bhjeaq");
-			attr(div3, "class", "container svelte-1bhjeaq");
+			attr(input, "class", "svelte-1z04o9t");
+			attr(button, "class", "svelte-1z04o9t");
+			attr(div1, "class", "form svelte-1z04o9t");
+			attr(h2, "class", "svelte-1z04o9t");
+			attr(ul, "class", "svelte-1z04o9t");
+			attr(div2, "class", "transactions svelte-1z04o9t");
+			attr(div3, "class", "container svelte-1z04o9t");
 		},
 		m(target, anchor) {
 			insert_hydration(target, div3, anchor);
