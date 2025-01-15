@@ -562,8 +562,8 @@ function get_each_context(ctx, list, i) {
 	return child_ctx;
 }
 
-// (160:2) {:else}
-function create_else_block(ctx) {
+// (170:29) 
+function create_if_block_2(ctx) {
 	let div0;
 	let label0;
 	let t0;
@@ -653,21 +653,21 @@ function create_else_block(ctx) {
 		},
 		h() {
 			attr(label0, "for", "username");
-			attr(label0, "class", "svelte-1no3u0g");
+			attr(label0, "class", "svelte-10i1o80");
 			attr(input0, "id", "username");
 			attr(input0, "type", "text");
 			attr(input0, "placeholder", "Enter your username");
-			attr(input0, "class", "svelte-1no3u0g");
-			attr(div0, "class", "input-group svelte-1no3u0g");
+			attr(input0, "class", "svelte-10i1o80");
+			attr(div0, "class", "input-group svelte-10i1o80");
 			attr(label1, "for", "password");
-			attr(label1, "class", "svelte-1no3u0g");
+			attr(label1, "class", "svelte-10i1o80");
 			attr(input1, "id", "password");
 			attr(input1, "type", "password");
 			attr(input1, "placeholder", "Enter your password");
-			attr(input1, "class", "svelte-1no3u0g");
-			attr(div1, "class", "input-group svelte-1no3u0g");
-			attr(button0, "class", "svelte-1no3u0g");
-			attr(button1, "class", "svelte-1no3u0g");
+			attr(input1, "class", "svelte-10i1o80");
+			attr(div1, "class", "input-group svelte-10i1o80");
+			attr(button0, "class", "svelte-10i1o80");
+			attr(button1, "class", "svelte-10i1o80");
 		},
 		m(target, anchor) {
 			insert_hydration(target, div0, anchor);
@@ -724,7 +724,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (142:2) {#if isCreatingUser}
+// (152:2) {#if isCreatingUser}
 function create_if_block_1(ctx) {
 	let div0;
 	let label0;
@@ -844,28 +844,28 @@ function create_if_block_1(ctx) {
 		},
 		h() {
 			attr(label0, "for", "username");
-			attr(label0, "class", "svelte-1no3u0g");
+			attr(label0, "class", "svelte-10i1o80");
 			attr(input0, "id", "username");
 			attr(input0, "type", "text");
 			attr(input0, "placeholder", "Enter new username");
-			attr(input0, "class", "svelte-1no3u0g");
-			attr(div0, "class", "input-group svelte-1no3u0g");
+			attr(input0, "class", "svelte-10i1o80");
+			attr(div0, "class", "input-group svelte-10i1o80");
 			attr(label1, "for", "password");
-			attr(label1, "class", "svelte-1no3u0g");
+			attr(label1, "class", "svelte-10i1o80");
 			attr(input1, "id", "password");
 			attr(input1, "type", "password");
 			attr(input1, "placeholder", "Enter new password");
-			attr(input1, "class", "svelte-1no3u0g");
-			attr(div1, "class", "input-group svelte-1no3u0g");
+			attr(input1, "class", "svelte-10i1o80");
+			attr(div1, "class", "input-group svelte-10i1o80");
 			attr(label2, "for", "adminPassword");
-			attr(label2, "class", "svelte-1no3u0g");
+			attr(label2, "class", "svelte-10i1o80");
 			attr(input2, "id", "adminPassword");
 			attr(input2, "type", "password");
 			attr(input2, "placeholder", "Enter admin password");
-			attr(input2, "class", "svelte-1no3u0g");
-			attr(div2, "class", "input-group svelte-1no3u0g");
-			attr(button0, "class", "svelte-1no3u0g");
-			attr(button1, "class", "svelte-1no3u0g");
+			attr(input2, "class", "svelte-10i1o80");
+			attr(div2, "class", "input-group svelte-10i1o80");
+			attr(button0, "class", "svelte-10i1o80");
+			attr(button1, "class", "svelte-10i1o80");
 		},
 		m(target, anchor) {
 			insert_hydration(target, div0, anchor);
@@ -936,8 +936,10 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (175:2) {#if isAuthenticated}
+// (185:2) {#if isAuthenticated}
 function create_if_block(ctx) {
+	let div6;
+	let div3;
 	let div0;
 	let label0;
 	let t0;
@@ -971,6 +973,7 @@ function create_if_block(ctx) {
 	let button;
 	let t15;
 	let t16;
+	let div5;
 	let table;
 	let thead;
 	let tr;
@@ -982,7 +985,7 @@ function create_if_block(ctx) {
 	let t20;
 	let tbody;
 	let t21;
-	let div3;
+	let div4;
 	let p0;
 	let strong0;
 	let t22;
@@ -1014,6 +1017,8 @@ function create_if_block(ctx) {
 
 	return {
 		c() {
+			div6 = element("div");
+			div3 = element("div");
 			div0 = element("div");
 			label0 = element("label");
 			t0 = text("Monthly Income:");
@@ -1047,6 +1052,7 @@ function create_if_block(ctx) {
 			button = element("button");
 			t15 = text("Add Expense");
 			t16 = space();
+			div5 = element("div");
 			table = element("table");
 			thead = element("thead");
 			tr = element("tr");
@@ -1063,7 +1069,7 @@ function create_if_block(ctx) {
 			}
 
 			t21 = space();
-			div3 = element("div");
+			div4 = element("div");
 			p0 = element("p");
 			strong0 = element("strong");
 			t22 = text("Total Income:");
@@ -1084,7 +1090,11 @@ function create_if_block(ctx) {
 			this.h();
 		},
 		l(nodes) {
-			div0 = claim_element(nodes, "DIV", { class: true });
+			div6 = claim_element(nodes, "DIV", { class: true });
+			var div6_nodes = children(div6);
+			div3 = claim_element(div6_nodes, "DIV", { class: true });
+			var div3_nodes = children(div3);
+			div0 = claim_element(div3_nodes, "DIV", { class: true });
 			var div0_nodes = children(div0);
 			label0 = claim_element(div0_nodes, "LABEL", { for: true, class: true });
 			var label0_nodes = children(label0);
@@ -1101,8 +1111,8 @@ function create_if_block(ctx) {
 			});
 
 			div0_nodes.forEach(detach);
-			t2 = claim_space(nodes);
-			div1 = claim_element(nodes, "DIV", { class: true });
+			t2 = claim_space(div3_nodes);
+			div1 = claim_element(div3_nodes, "DIV", { class: true });
 			var div1_nodes = children(div1);
 			label1 = claim_element(div1_nodes, "LABEL", { for: true, class: true });
 			var label1_nodes = children(label1);
@@ -1137,8 +1147,8 @@ function create_if_block(ctx) {
 			option5_nodes.forEach(detach);
 			select_nodes.forEach(detach);
 			div1_nodes.forEach(detach);
-			t11 = claim_space(nodes);
-			div2 = claim_element(nodes, "DIV", { class: true });
+			t11 = claim_space(div3_nodes);
+			div2 = claim_element(div3_nodes, "DIV", { class: true });
 			var div2_nodes = children(div2);
 			label2 = claim_element(div2_nodes, "LABEL", { for: true, class: true });
 			var label2_nodes = children(label2);
@@ -1155,13 +1165,16 @@ function create_if_block(ctx) {
 			});
 
 			div2_nodes.forEach(detach);
-			t14 = claim_space(nodes);
-			button = claim_element(nodes, "BUTTON", { class: true });
+			t14 = claim_space(div3_nodes);
+			button = claim_element(div3_nodes, "BUTTON", { class: true });
 			var button_nodes = children(button);
 			t15 = claim_text(button_nodes, "Add Expense");
 			button_nodes.forEach(detach);
-			t16 = claim_space(nodes);
-			table = claim_element(nodes, "TABLE", { class: true });
+			div3_nodes.forEach(detach);
+			t16 = claim_space(div6_nodes);
+			div5 = claim_element(div6_nodes, "DIV", { class: true });
+			var div5_nodes = children(div5);
+			table = claim_element(div5_nodes, "TABLE", { class: true });
 			var table_nodes = children(table);
 			thead = claim_element(table_nodes, "THEAD", {});
 			var thead_nodes = children(thead);
@@ -1188,10 +1201,10 @@ function create_if_block(ctx) {
 
 			tbody_nodes.forEach(detach);
 			table_nodes.forEach(detach);
-			t21 = claim_space(nodes);
-			div3 = claim_element(nodes, "DIV", { class: true });
-			var div3_nodes = children(div3);
-			p0 = claim_element(div3_nodes, "P", {});
+			t21 = claim_space(div5_nodes);
+			div4 = claim_element(div5_nodes, "DIV", { class: true });
+			var div4_nodes = children(div4);
+			p0 = claim_element(div4_nodes, "P", {});
 			var p0_nodes = children(p0);
 			strong0 = claim_element(p0_nodes, "STRONG", {});
 			var strong0_nodes = children(strong0);
@@ -1200,8 +1213,8 @@ function create_if_block(ctx) {
 			t23 = claim_text(p0_nodes, " $");
 			t24 = claim_text(p0_nodes, t24_value);
 			p0_nodes.forEach(detach);
-			t25 = claim_space(div3_nodes);
-			p1 = claim_element(div3_nodes, "P", {});
+			t25 = claim_space(div4_nodes);
+			p1 = claim_element(div4_nodes, "P", {});
 			var p1_nodes = children(p1);
 			strong1 = claim_element(p1_nodes, "STRONG", {});
 			var strong1_nodes = children(strong1);
@@ -1210,8 +1223,8 @@ function create_if_block(ctx) {
 			t27 = claim_text(p1_nodes, " $");
 			t28 = claim_text(p1_nodes, t28_value);
 			p1_nodes.forEach(detach);
-			t29 = claim_space(div3_nodes);
-			p2 = claim_element(div3_nodes, "P", {});
+			t29 = claim_space(div4_nodes);
+			p2 = claim_element(div4_nodes, "P", {});
 			var p2_nodes = children(p2);
 			strong2 = claim_element(p2_nodes, "STRONG", {});
 			var strong2_nodes = children(strong2);
@@ -1220,20 +1233,22 @@ function create_if_block(ctx) {
 			t31 = claim_text(p2_nodes, " $");
 			t32 = claim_text(p2_nodes, t32_value);
 			p2_nodes.forEach(detach);
-			div3_nodes.forEach(detach);
+			div4_nodes.forEach(detach);
+			div5_nodes.forEach(detach);
+			div6_nodes.forEach(detach);
 			this.h();
 		},
 		h() {
 			attr(label0, "for", "income");
-			attr(label0, "class", "svelte-1no3u0g");
+			attr(label0, "class", "svelte-10i1o80");
 			attr(input0, "id", "income");
 			attr(input0, "type", "number");
 			attr(input0, "min", "0");
 			attr(input0, "placeholder", "Enter your income");
-			attr(input0, "class", "svelte-1no3u0g");
-			attr(div0, "class", "input-group svelte-1no3u0g");
+			attr(input0, "class", "svelte-10i1o80");
+			attr(div0, "class", "input-group svelte-10i1o80");
 			attr(label1, "for", "expenseDesc");
-			attr(label1, "class", "svelte-1no3u0g");
+			attr(label1, "class", "svelte-10i1o80");
 			option0.__value = "";
 			option0.value = option0.__value;
 			option1.__value = "Rent";
@@ -1247,32 +1262,37 @@ function create_if_block(ctx) {
 			option5.__value = "Other";
 			option5.value = option5.__value;
 			attr(select, "id", "expenseDesc");
-			attr(select, "class", "svelte-1no3u0g");
+			attr(select, "class", "svelte-10i1o80");
 			if (/*descriptionInput*/ ctx[3] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[23].call(select));
-			attr(div1, "class", "input-group svelte-1no3u0g");
+			attr(div1, "class", "input-group svelte-10i1o80");
 			attr(label2, "for", "expenseAmt");
-			attr(label2, "class", "svelte-1no3u0g");
+			attr(label2, "class", "svelte-10i1o80");
 			attr(input1, "id", "expenseAmt");
 			attr(input1, "type", "number");
 			attr(input1, "min", "0");
 			attr(input1, "placeholder", "Enter expense amount");
-			attr(input1, "class", "svelte-1no3u0g");
-			attr(div2, "class", "input-group svelte-1no3u0g");
-			attr(button, "class", "svelte-1no3u0g");
-			attr(th0, "class", "svelte-1no3u0g");
-			attr(th1, "class", "svelte-1no3u0g");
-			attr(table, "class", "svelte-1no3u0g");
-			attr(div3, "class", "summary svelte-1no3u0g");
+			attr(input1, "class", "svelte-10i1o80");
+			attr(div2, "class", "input-group svelte-10i1o80");
+			attr(button, "class", "svelte-10i1o80");
+			attr(div3, "class", "inputs svelte-10i1o80");
+			attr(th0, "class", "svelte-10i1o80");
+			attr(th1, "class", "svelte-10i1o80");
+			attr(table, "class", "svelte-10i1o80");
+			attr(div4, "class", "summary svelte-10i1o80");
+			attr(div5, "class", "results svelte-10i1o80");
+			attr(div6, "class", "flex svelte-10i1o80");
 		},
 		m(target, anchor) {
-			insert_hydration(target, div0, anchor);
+			insert_hydration(target, div6, anchor);
+			append_hydration(div6, div3);
+			append_hydration(div3, div0);
 			append_hydration(div0, label0);
 			append_hydration(label0, t0);
 			append_hydration(div0, t1);
 			append_hydration(div0, input0);
 			set_input_value(input0, /*income*/ ctx[0]);
-			insert_hydration(target, t2, anchor);
-			insert_hydration(target, div1, anchor);
+			append_hydration(div3, t2);
+			append_hydration(div3, div1);
 			append_hydration(div1, label1);
 			append_hydration(label1, t3);
 			append_hydration(div1, t4);
@@ -1290,18 +1310,19 @@ function create_if_block(ctx) {
 			append_hydration(select, option5);
 			append_hydration(option5, t10);
 			select_option(select, /*descriptionInput*/ ctx[3], true);
-			insert_hydration(target, t11, anchor);
-			insert_hydration(target, div2, anchor);
+			append_hydration(div3, t11);
+			append_hydration(div3, div2);
 			append_hydration(div2, label2);
 			append_hydration(label2, t12);
 			append_hydration(div2, t13);
 			append_hydration(div2, input1);
 			set_input_value(input1, /*amountInput*/ ctx[4]);
-			insert_hydration(target, t14, anchor);
-			insert_hydration(target, button, anchor);
+			append_hydration(div3, t14);
+			append_hydration(div3, button);
 			append_hydration(button, t15);
-			insert_hydration(target, t16, anchor);
-			insert_hydration(target, table, anchor);
+			append_hydration(div6, t16);
+			append_hydration(div6, div5);
+			append_hydration(div5, table);
 			append_hydration(table, thead);
 			append_hydration(thead, tr);
 			append_hydration(tr, th0);
@@ -1318,21 +1339,21 @@ function create_if_block(ctx) {
 				}
 			}
 
-			insert_hydration(target, t21, anchor);
-			insert_hydration(target, div3, anchor);
-			append_hydration(div3, p0);
+			append_hydration(div5, t21);
+			append_hydration(div5, div4);
+			append_hydration(div4, p0);
 			append_hydration(p0, strong0);
 			append_hydration(strong0, t22);
 			append_hydration(p0, t23);
 			append_hydration(p0, t24);
-			append_hydration(div3, t25);
-			append_hydration(div3, p1);
+			append_hydration(div4, t25);
+			append_hydration(div4, p1);
 			append_hydration(p1, strong1);
 			append_hydration(strong1, t26);
 			append_hydration(p1, t27);
 			append_hydration(p1, t28);
-			append_hydration(div3, t29);
-			append_hydration(div3, p2);
+			append_hydration(div4, t29);
+			append_hydration(div4, p2);
 			append_hydration(p2, strong2);
 			append_hydration(strong2, t30);
 			append_hydration(p2, t31);
@@ -1390,25 +1411,15 @@ function create_if_block(ctx) {
 			if (dirty & /*difference*/ 1024 && t32_value !== (t32_value = /*difference*/ ctx[10].toFixed(2) + "")) set_data(t32, t32_value);
 		},
 		d(detaching) {
-			if (detaching) detach(div0);
-			if (detaching) detach(t2);
-			if (detaching) detach(div1);
-			if (detaching) detach(t11);
-			if (detaching) detach(div2);
-			if (detaching) detach(t14);
-			if (detaching) detach(button);
-			if (detaching) detach(t16);
-			if (detaching) detach(table);
+			if (detaching) detach(div6);
 			destroy_each(each_blocks, detaching);
-			if (detaching) detach(t21);
-			if (detaching) detach(div3);
 			mounted = false;
 			run_all(dispose);
 		}
 	};
 }
 
-// (208:8) {#each expenses as expense}
+// (222:12) {#each expenses as expense}
 function create_each_block(ctx) {
 	let tr;
 	let td0;
@@ -1451,8 +1462,8 @@ function create_each_block(ctx) {
 			this.h();
 		},
 		h() {
-			attr(td0, "class", "svelte-1no3u0g");
-			attr(td1, "class", "svelte-1no3u0g");
+			attr(td0, "class", "svelte-10i1o80");
+			attr(td1, "class", "svelte-10i1o80");
 		},
 		m(target, anchor) {
 			insert_hydration(target, tr, anchor);
@@ -1483,11 +1494,11 @@ function create_fragment(ctx) {
 
 	function select_block_type(ctx, dirty) {
 		if (/*isCreatingUser*/ ctx[9]) return create_if_block_1;
-		return create_else_block;
+		if (!/*isAuthenticated*/ ctx[8]) return create_if_block_2;
 	}
 
 	let current_block_type = select_block_type(ctx);
-	let if_block0 = current_block_type(ctx);
+	let if_block0 = current_block_type && current_block_type(ctx);
 	let if_block1 = /*isAuthenticated*/ ctx[8] && create_if_block(ctx);
 
 	return {
@@ -1496,7 +1507,7 @@ function create_fragment(ctx) {
 			h1 = element("h1");
 			t0 = text("Budget Tracker");
 			t1 = space();
-			if_block0.c();
+			if (if_block0) if_block0.c();
 			t2 = space();
 			if (if_block1) if_block1.c();
 			this.h();
@@ -1509,22 +1520,22 @@ function create_fragment(ctx) {
 			t0 = claim_text(h1_nodes, "Budget Tracker");
 			h1_nodes.forEach(detach);
 			t1 = claim_space(div_nodes);
-			if_block0.l(div_nodes);
+			if (if_block0) if_block0.l(div_nodes);
 			t2 = claim_space(div_nodes);
 			if (if_block1) if_block1.l(div_nodes);
 			div_nodes.forEach(detach);
 			this.h();
 		},
 		h() {
-			attr(h1, "class", "svelte-1no3u0g");
-			attr(div, "class", "container svelte-1no3u0g");
+			attr(h1, "class", "svelte-10i1o80");
+			attr(div, "class", "container svelte-10i1o80");
 		},
 		m(target, anchor) {
 			insert_hydration(target, div, anchor);
 			append_hydration(div, h1);
 			append_hydration(h1, t0);
 			append_hydration(div, t1);
-			if_block0.m(div, null);
+			if (if_block0) if_block0.m(div, null);
 			append_hydration(div, t2);
 			if (if_block1) if_block1.m(div, null);
 		},
@@ -1532,8 +1543,8 @@ function create_fragment(ctx) {
 			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block0) {
 				if_block0.p(ctx, dirty);
 			} else {
-				if_block0.d(1);
-				if_block0 = current_block_type(ctx);
+				if (if_block0) if_block0.d(1);
+				if_block0 = current_block_type && current_block_type(ctx);
 
 				if (if_block0) {
 					if_block0.c();
@@ -1558,7 +1569,11 @@ function create_fragment(ctx) {
 		o: noop,
 		d(detaching) {
 			if (detaching) detach(div);
-			if_block0.d();
+
+			if (if_block0) {
+				if_block0.d();
+			}
+
 			if (if_block1) if_block1.d();
 		}
 	};
