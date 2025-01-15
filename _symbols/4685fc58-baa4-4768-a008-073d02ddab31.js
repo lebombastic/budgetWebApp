@@ -582,7 +582,7 @@ function get_each_context(ctx, list, i) {
 	return child_ctx;
 }
 
-// (383:0) {:else}
+// (382:0) {:else}
 function create_else_block(ctx) {
 	let div3;
 	let h1;
@@ -961,7 +961,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (366:10) {#if !isLoggedIn}
+// (365:10) {#if !isLoggedIn}
 function create_if_block(ctx) {
 	let div1;
 	let h1;
@@ -1081,7 +1081,7 @@ function create_if_block(ctx) {
 			set_input_value(input0, /*username*/ ctx[1]);
 			append_hydration(div0, t2);
 			append_hydration(div0, input1);
-			set_input_value(input1, /*password*/ ctx[2]);
+			set_input_value(input1, /*password*/ ctx[0]);
 			append_hydration(div0, t3);
 			if (if_block) if_block.m(div0, null);
 			append_hydration(div0, t4);
@@ -1119,8 +1119,8 @@ function create_if_block(ctx) {
 				set_input_value(input0, /*username*/ ctx[1]);
 			}
 
-			if (dirty & /*password*/ 4 && input1.value !== /*password*/ ctx[2]) {
-				set_input_value(input1, /*password*/ ctx[2]);
+			if (dirty & /*password*/ 1 && input1.value !== /*password*/ ctx[0]) {
+				set_input_value(input1, /*password*/ ctx[0]);
 			}
 
 			if (/*errorMessage*/ ctx[3]) {
@@ -1153,7 +1153,7 @@ function create_if_block(ctx) {
 	};
 }
 
-// (404:8) {#each transactions as transaction}
+// (403:8) {#each transactions as transaction}
 function create_each_block(ctx) {
 	let li;
 	let span;
@@ -1246,7 +1246,7 @@ function create_each_block(ctx) {
 	};
 }
 
-// (372:6) {#if errorMessage}
+// (371:6) {#if errorMessage}
 function create_if_block_1(ctx) {
 	let div;
 	let t;
@@ -1284,7 +1284,7 @@ function create_fragment(ctx) {
 	let if_block_anchor;
 
 	function select_block_type(ctx, dirty) {
-		if (!/*isLoggedIn*/ ctx[0]) return create_if_block;
+		if (!/*isLoggedIn*/ ctx[2]) return create_if_block;
 		return create_else_block;
 	}
 
@@ -1328,12 +1328,12 @@ function create_fragment(ctx) {
 
 function instance($$self, $$props, $$invalidate) {
 	let { props } = $$props;
+	let { password } = $$props;
+	let { username } = $$props;
 
 	// State for authentication
 	let isLoggedIn = false;
 
-	let username = '';
-	let password = '';
 	let errorMessage = '';
 	let isCreatingAccount = false;
 
@@ -1351,7 +1351,7 @@ function instance($$self, $$props, $$invalidate) {
 		const user = localStorage.getItem('user');
 
 		if (user) {
-			$$invalidate(0, isLoggedIn = true);
+			$$invalidate(2, isLoggedIn = true);
 			loadUserData(JSON.parse(user));
 		}
 	});
@@ -1382,7 +1382,7 @@ function instance($$self, $$props, $$invalidate) {
 		const user = JSON.parse(localStorage.getItem(username));
 
 		if (user && user.password === password) {
-			$$invalidate(0, isLoggedIn = true);
+			$$invalidate(2, isLoggedIn = true);
 			loadUserData(user);
 			$$invalidate(3, errorMessage = '');
 		} else {
@@ -1408,15 +1408,15 @@ function instance($$self, $$props, $$invalidate) {
 
 		localStorage.setItem(username, JSON.stringify(user));
 		localStorage.setItem('user', JSON.stringify(user));
-		$$invalidate(0, isLoggedIn = true);
+		$$invalidate(2, isLoggedIn = true);
 		$$invalidate(3, errorMessage = '');
 	}
 
 	// Handle logout
 	function logout() {
-		$$invalidate(0, isLoggedIn = false);
+		$$invalidate(2, isLoggedIn = false);
 		$$invalidate(1, username = '');
-		$$invalidate(2, password = '');
+		$$invalidate(0, password = '');
 		localStorage.removeItem('user');
 	}
 
@@ -1460,7 +1460,7 @@ function instance($$self, $$props, $$invalidate) {
 
 	function input1_input_handler() {
 		password = this.value;
-		$$invalidate(2, password);
+		$$invalidate(0, password);
 	}
 
 	const click_handler = () => $$invalidate(4, isCreatingAccount = !isCreatingAccount);
@@ -1479,12 +1479,14 @@ function instance($$self, $$props, $$invalidate) {
 
 	$$self.$$set = $$props => {
 		if ('props' in $$props) $$invalidate(16, props = $$props.props);
+		if ('password' in $$props) $$invalidate(0, password = $$props.password);
+		if ('username' in $$props) $$invalidate(1, username = $$props.username);
 	};
 
 	return [
-		isLoggedIn,
-		username,
 		password,
+		username,
+		isLoggedIn,
 		errorMessage,
 		isCreatingAccount,
 		totalIncome,
@@ -1511,7 +1513,7 @@ function instance($$self, $$props, $$invalidate) {
 class Component extends SvelteComponent {
 	constructor(options) {
 		super();
-		init(this, options, instance, create_fragment, safe_not_equal, { props: 16 });
+		init(this, options, instance, create_fragment, safe_not_equal, { props: 16, password: 0, username: 1 });
 	}
 }
 
